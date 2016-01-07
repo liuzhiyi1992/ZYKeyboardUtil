@@ -24,32 +24,32 @@ ZYKeyboardUtil 通过lazy方式注册键盘通知监听者，核心工作围绕�
 #####\#define DURATION_ANIMATION  
 control the animation duration
 
-
+<br>
 ###Class：
 ####-KeyboardInfo:
-**property：**
--animationDuration:  响应动画的过程时长
--frameBegin：触发键盘事件前键盘frame
--frameEnd：变化后键盘frame
--heightIncrement：单次键盘变化增量
--action：键盘事件枚举
--isSameAction：是否同一种动作  
-**func：**
--fillKeyboardInfoWithDuration:frameBegin:frameEnd:heightIncrement:action:isSameAction:  
-为KeyboardInfo各属性赋值。
+**property：**  
+-animationDuration:  响应动画的过程时长  
+-frameBegin：触发键盘事件前键盘frame  
+-frameEnd：变化后键盘frame  
+-heightIncrement：单次键盘变化增量  
+-action：键盘事件枚举  
+-isSameAction：是否同一种动作    
+**func：**  
+-fillKeyboardInfoWithDuration:frameBegin:frameEnd:heightIncrement:action:isSameAction:    
+为KeyboardInfo各属性赋值。  
 
 ####-ZYKeyboardUtil:  
-**property：**
+**property：**  
 -appearPostIndex：键盘分次弹出情况中 弹出 的次数
--keyboardInfo
--haveRegisterObserver：是否已经注册监听者
--animateWhenKeyboardAppearBlock：弹出Block
--animateWhenKeyboardDisappearBlock：收起Block
--printKeyboardInfoBlock：输出键盘信息Block  
-**func：**
--setAnimateWhenKeyboardAppearBlock:  
--setAnimateWhenKeyboardDisappearBlock:
--setPrintKeyboardInfoBlock:  
+-keyboardInfo  
+-haveRegisterObserver：是否已经注册监听者  
+-animateWhenKeyboardAppearBlock：弹出Block  
+-animateWhenKeyboardDisappearBlock：收起Block  
+-printKeyboardInfoBlock：输出键盘信息Block    
+**func：**  
+-setAnimateWhenKeyboardAppearBlock:    
+-setAnimateWhenKeyboardDisappearBlock:  
+-setPrintKeyboardInfoBlock:    
 
 
 #**Usage：**  
