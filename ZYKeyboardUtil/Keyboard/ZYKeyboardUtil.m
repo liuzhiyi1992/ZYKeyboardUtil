@@ -8,7 +8,7 @@
 
 #import "ZYKeyboardUtil.h"
 
-#define DURATION_ANIMATION      0.5
+
 
 @interface ZYKeyboardUtil()
 

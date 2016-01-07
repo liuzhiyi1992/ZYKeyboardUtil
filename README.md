@@ -53,7 +53,7 @@ control the animation duration
 
 
 #**Usage：**  
-```self.keyboardUtil = [[ZYKeyboardUtil alloc] init];```
+```self.keyboardUtil = [[ZYKeyboardUtil alloc] init];```  
 创建一个ZYKeyboard对象，为了让其生存在整个页面实现功能的时间段内，让你的controller持有他吧。
 
 ```

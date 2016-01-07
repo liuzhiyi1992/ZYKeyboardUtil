@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#define DURATION_ANIMATION      0.5
+
 typedef enum {
     KeyboardActionDefault,
     KeyboardActionShow,
