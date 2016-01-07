@@ -11,6 +11,7 @@ ZYKeyboardUtil 通过对每次键盘展开时的增量heightIncrement作处理 �
 
 <br>
 同时能处理多层嵌套情况下控件的键盘遮盖问题，UITextField嵌套两层UIView例子演示：
+
 ![](https://raw.githubusercontent.com/liuzhiyi1992/ZYKeyboardUtil/master/ZYKeyboardUtil/DisplayFile/keyboardUtil.gif)
 
 <br>
@@ -43,7 +44,7 @@ control the animation duration
 -haveRegisterObserver：是否已经注册监听者
 -animateWhenKeyboardAppearBlock：弹出Block
 -animateWhenKeyboardDisappearBlock：收起Block
--printKeyboardInfoBlock：输出键盘信息Block
+-printKeyboardInfoBlock：输出键盘信息Block  
 **func：**
 -setAnimateWhenKeyboardAppearBlock:  
 -setAnimateWhenKeyboardDisappearBlock:
