@@ -3,16 +3,16 @@ Util Handed all keyboard events with Block Conveniently
 
 
 <br>
-#**Features： **
+#**Features：**
 ZYKeyboardUtil 通过对每次键盘展开时的增量heightIncrement作处理 应对 第三方键盘 分次弹出的问题
 ![](https://raw.githubusercontent.com/liuzhiyi1992/ZYKeyboardUtil/master/ZYKeyboardUtil/DisplayFile/demo_1.jpg)
 
 <br>
 同时能处理多层嵌套情况下控件的键盘遮盖问题，UITextField嵌套两层UIView例子演示：
-![](https://raw.githubusercontent.com/liuzhiyi1992/ZYKeyboardUtil/master/ZYKeyboardUtil/DisplayFile/[keyboardUtil.gif](https://github.com/liuzhiyi1992/ZYKeyboardUtil/blob/master/ZYKeyboardUtil/DisplayFile/keyboardUtil.gif)
+![](https://raw.githubusercontent.com/liuzhiyi1992/ZYKeyboardUtil/master/ZYKeyboardUtil/DisplayFile/keyboardUtil.gif)
 
 <br>
-#**explain： **
+#**explain：**
 #####写在前面：
 ZYKeyboardUtil 通过lazy方式注册键盘通知监听者，核心工作围绕一个model和三个Block，内部类KeyboardInfo作为model存储着每次处理时所需的键盘信息。animateWhenKeyboardAppearBlock作键盘展示时的处理，animateWhenKeyboardDisappearBlock作键盘收起时的处理，而printKeyboardInfoBlock用作在必要时输出键盘信息。AppearBlock和DisappearBlock统一做了UIViewAnimation，使用时只需要编写需要的界面变化即可。
 
@@ -22,7 +22,7 @@ ZYKeyboardUtil 通过lazy方式注册键盘通知监听者，核心工作围绕�
 control the animation duration
 
 ###Class：
-#####KeyboardInfo:
+####KeyboardInfo:
 **property：**
 -animationDuration:  响应动画的过程时长
 -frameBegin：触发键盘事件前键盘frame
@@ -35,9 +35,7 @@ control the animation duration
 -fillKeyboardInfoWithDuration:frameBegin:frameEnd:heightIncrement:action:isSameAction:  
 为KeyboardInfo各属性赋值。
 
-<br>
-<br>
-#####ZYKeyboardUtil:  
+####ZYKeyboardUtil:  
 **property:  **
 -appearPostIndex：键盘分次弹出情况中 弹出 的次数
 -keyboardInfo
