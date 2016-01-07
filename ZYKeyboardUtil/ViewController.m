@@ -50,7 +50,7 @@
     }];
     
     
-    [self.keyboardUtil setAnimateWhenKeyboardDisappearBlock:^(CGFloat keyboardHeight) {
+    [_keyboardUtil setAnimateWhenKeyboardDisappearBlock:^(CGFloat keyboardHeight) {
         NSLog(@"\n\n键盘在收起来~  上次高度为:+%f", keyboardHeight);
         
         //uodateOriginY
@@ -59,7 +59,7 @@
     }];
     
     
-    [self.keyboardUtil setPrintKeyboardInfoBlock:^(ZYKeyboardUtil *keyboardUtil, KeyboardInfo *keyboardInfo) {
+    [_keyboardUtil setPrintKeyboardInfoBlock:^(ZYKeyboardUtil *keyboardUtil, KeyboardInfo *keyboardInfo) {
         
         NSLog(@"\n\n拿到键盘信息 和 ZYKeyboardUtil对象");
     }];
