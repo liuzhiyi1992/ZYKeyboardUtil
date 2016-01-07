@@ -14,6 +14,8 @@
 		484B8ED91C3E188A00CBA902 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 484B8ED81C3E188A00CBA902 /* Assets.xcassets */; };
 		484B8EDC1C3E188A00CBA902 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 484B8EDA1C3E188A00CBA902 /* LaunchScreen.storyboard */; };
 		484B8EEC1C3E18FD00CBA902 /* ZYKeyboardUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 484B8EEB1C3E18FD00CBA902 /* ZYKeyboardUtil.m */; };
+		484B8EF81C3E634700CBA902 /* demo_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 484B8EF61C3E634700CBA902 /* demo_1.jpg */; };
+		484B8EF91C3E634700CBA902 /* keyboardUtil.gif in Resources */ = {isa = PBXBuildFile; fileRef = 484B8EF71C3E634700CBA902 /* keyboardUtil.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +31,8 @@
 		484B8EDD1C3E188A00CBA902 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		484B8EEA1C3E18FD00CBA902 /* ZYKeyboardUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYKeyboardUtil.h; sourceTree = "<group>"; };
 		484B8EEB1C3E18FD00CBA902 /* ZYKeyboardUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYKeyboardUtil.m; sourceTree = "<group>"; };
+		484B8EF61C3E634700CBA902 /* demo_1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = demo_1.jpg; sourceTree = "<group>"; };
+		484B8EF71C3E634700CBA902 /* keyboardUtil.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = keyboardUtil.gif; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +74,7 @@
 				484B8ED81C3E188A00CBA902 /* Assets.xcassets */,
 				484B8EDA1C3E188A00CBA902 /* LaunchScreen.storyboard */,
 				484B8EDD1C3E188A00CBA902 /* Info.plist */,
+				484B8EF51C3E634700CBA902 /* DisplayFile */,
 				484B8ECC1C3E188A00CBA902 /* Supporting Files */,
 			);
 			path = ZYKeyboardUtil;
@@ -90,6 +95,15 @@
 				484B8EEB1C3E18FD00CBA902 /* ZYKeyboardUtil.m */,
 			);
 			path = Keyboard;
+			sourceTree = "<group>";
+		};
+		484B8EF51C3E634700CBA902 /* DisplayFile */ = {
+			isa = PBXGroup;
+			children = (
+				484B8EF61C3E634700CBA902 /* demo_1.jpg */,
+				484B8EF71C3E634700CBA902 /* keyboardUtil.gif */,
+			);
+			path = DisplayFile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -150,7 +164,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				484B8EDC1C3E188A00CBA902 /* LaunchScreen.storyboard in Resources */,
+				484B8EF91C3E634700CBA902 /* keyboardUtil.gif in Resources */,
 				484B8ED91C3E188A00CBA902 /* Assets.xcassets in Resources */,
+				484B8EF81C3E634700CBA902 /* demo_1.jpg in Resources */,
 				484B8ED71C3E188A00CBA902 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
