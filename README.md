@@ -5,7 +5,9 @@ Util Handed all keyboard events with Block Conveniently
 <br>
 #**Features：**
 ZYKeyboardUtil 通过对每次键盘展开时的增量heightIncrement作处理 应对 第三方键盘 分次弹出的问题
+
 ![](https://raw.githubusercontent.com/liuzhiyi1992/ZYKeyboardUtil/master/ZYKeyboardUtil/DisplayFile/demo_1.jpg)
+
 
 <br>
 同时能处理多层嵌套情况下控件的键盘遮盖问题，UITextField嵌套两层UIView例子演示：
@@ -30,20 +32,18 @@ control the animation duration
 -heightIncrement：单次键盘变化增量
 -action：键盘事件枚举
 -isSameAction：是否同一种动作  
-
 **func：**
 -fillKeyboardInfoWithDuration:frameBegin:frameEnd:heightIncrement:action:isSameAction:  
 为KeyboardInfo各属性赋值。
 
 ####ZYKeyboardUtil:  
-**property:  **
+**property：**
 -appearPostIndex：键盘分次弹出情况中 弹出 的次数
 -keyboardInfo
 -haveRegisterObserver：是否已经注册监听者
 -animateWhenKeyboardAppearBlock：弹出Block
 -animateWhenKeyboardDisappearBlock：收起Block
 -printKeyboardInfoBlock：输出键盘信息Block
-
 **func：**
 -setAnimateWhenKeyboardAppearBlock:  
 -setAnimateWhenKeyboardDisappearBlock:
