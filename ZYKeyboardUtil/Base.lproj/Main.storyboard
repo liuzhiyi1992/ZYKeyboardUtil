@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,8 +17,59 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome !" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bqe-rh-H59">
+                                <rect key="frame" x="216" y="228" width="167.5" height="43"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c0U-3k-Nlf">
+                                <rect key="frame" x="100" y="400" width="400" height="100"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KPp-mc-t0x">
+                                        <rect key="frame" x="33.5" y="20" width="333" height="60"/>
+                                        <subviews>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Press here please" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Phc-x5-YOH">
+                                                <rect key="frame" x="99" y="15" width="135.5" height="30"/>
+                                                <animations/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                        <animations/>
+                                        <color key="backgroundColor" red="0.47450980390000003" green="0.97254901959999995" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="Phc-x5-YOH" firstAttribute="centerX" secondItem="KPp-mc-t0x" secondAttribute="centerX" id="Jvn-cr-7uh"/>
+                                            <constraint firstAttribute="height" constant="60" id="Umf-1D-vvH"/>
+                                            <constraint firstItem="Phc-x5-YOH" firstAttribute="centerY" secondItem="KPp-mc-t0x" secondAttribute="centerY" id="o5w-oD-aWP"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <animations/>
+                                <color key="backgroundColor" red="0.98348416289999996" green="0.73859743919999998" blue="0.89119477430000005" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="KPp-mc-t0x" firstAttribute="centerY" secondItem="c0U-3k-Nlf" secondAttribute="centerY" id="S0r-wa-WDE"/>
+                                    <constraint firstAttribute="height" constant="100" id="UCH-l1-LRA"/>
+                                    <constraint firstItem="KPp-mc-t0x" firstAttribute="centerX" secondItem="c0U-3k-Nlf" secondAttribute="centerX" id="f62-bc-05z"/>
+                                    <constraint firstItem="KPp-mc-t0x" firstAttribute="width" secondItem="c0U-3k-Nlf" secondAttribute="width" multiplier="1:1.2" id="ks9-AW-NFu"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="c0U-3k-Nlf" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="2:3" id="5eW-oW-Dut"/>
+                            <constraint firstItem="bqe-rh-H59" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dkO-BQ-GaN"/>
+                            <constraint firstItem="bqe-rh-H59" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="1:1" constant="-50" id="g3l-KX-qvh"/>
+                            <constraint firstItem="c0U-3k-Nlf" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="pvm-eH-8VH"/>
+                            <constraint firstItem="c0U-3k-Nlf" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="3:2" id="ydg-M9-J4O"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mainTextField" destination="Phc-x5-YOH" id="V8j-Qy-PEp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

@@ -13,6 +13,7 @@
 		484B8ED71C3E188A00CBA902 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 484B8ED51C3E188A00CBA902 /* Main.storyboard */; };
 		484B8ED91C3E188A00CBA902 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 484B8ED81C3E188A00CBA902 /* Assets.xcassets */; };
 		484B8EDC1C3E188A00CBA902 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 484B8EDA1C3E188A00CBA902 /* LaunchScreen.storyboard */; };
+		484B8EEC1C3E18FD00CBA902 /* ZYKeyboardUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 484B8EEB1C3E18FD00CBA902 /* ZYKeyboardUtil.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,8 @@
 		484B8ED81C3E188A00CBA902 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		484B8EDB1C3E188A00CBA902 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		484B8EDD1C3E188A00CBA902 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		484B8EEA1C3E18FD00CBA902 /* ZYKeyboardUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYKeyboardUtil.h; sourceTree = "<group>"; };
+		484B8EEB1C3E18FD00CBA902 /* ZYKeyboardUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYKeyboardUtil.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +61,7 @@
 		484B8ECB1C3E188A00CBA902 /* ZYKeyboardUtil */ = {
 			isa = PBXGroup;
 			children = (
+				484B8EE61C3E18C000CBA902 /* Keyboard */,
 				484B8ECF1C3E188A00CBA902 /* AppDelegate.h */,
 				484B8ED01C3E188A00CBA902 /* AppDelegate.m */,
 				484B8ED21C3E188A00CBA902 /* ViewController.h */,
@@ -77,6 +81,15 @@
 				484B8ECD1C3E188A00CBA902 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		484B8EE61C3E18C000CBA902 /* Keyboard */ = {
+			isa = PBXGroup;
+			children = (
+				484B8EEA1C3E18FD00CBA902 /* ZYKeyboardUtil.h */,
+				484B8EEB1C3E18FD00CBA902 /* ZYKeyboardUtil.m */,
+			);
+			path = Keyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -149,6 +162,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				484B8EEC1C3E18FD00CBA902 /* ZYKeyboardUtil.m in Sources */,
 				484B8ED41C3E188A00CBA902 /* ViewController.m in Sources */,
 				484B8ED11C3E188A00CBA902 /* AppDelegate.m in Sources */,
 				484B8ECE1C3E188A00CBA902 /* main.m in Sources */,
@@ -262,8 +276,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = ZYKeyboardUtil/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.lzy.ZYKeyboardUtil;
+				PRODUCT_BUNDLE_IDENTIFIER = com.qiuhaodong.sport;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -273,8 +288,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = ZYKeyboardUtil/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.lzy.ZYKeyboardUtil;
+				PRODUCT_BUNDLE_IDENTIFIER = com.qiuhaodong.sport;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -298,6 +314,7 @@
 				484B8EE21C3E188A00CBA902 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
