@@ -24,8 +24,9 @@ ZYKeyboardUtil 通过lazy方式注册键盘通知监听者，核心工作围绕�
 #####\#define DURATION_ANIMATION  
 control the animation duration
 
+
 ###Class：
-####KeyboardInfo:
+####-KeyboardInfo:
 **property：**
 -animationDuration:  响应动画的过程时长
 -frameBegin：触发键盘事件前键盘frame
@@ -37,7 +38,7 @@ control the animation duration
 -fillKeyboardInfoWithDuration:frameBegin:frameEnd:heightIncrement:action:isSameAction:  
 为KeyboardInfo各属性赋值。
 
-####ZYKeyboardUtil:  
+####-ZYKeyboardUtil:  
 **property：**
 -appearPostIndex：键盘分次弹出情况中 弹出 的次数
 -keyboardInfo
