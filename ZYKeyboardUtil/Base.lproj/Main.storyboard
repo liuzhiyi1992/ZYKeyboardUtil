@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome !" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bqe-rh-H59">
-                                <rect key="frame" x="216" y="228" width="167.5" height="43"/>
+                                <rect key="frame" x="216" y="228" width="168" height="43"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -29,17 +29,16 @@
                                 <rect key="frame" x="100" y="400" width="400" height="100"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KPp-mc-t0x">
-                                        <rect key="frame" x="33.5" y="20" width="333" height="60"/>
+                                        <rect key="frame" x="34" y="20" width="333" height="60"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Press here please" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Phc-x5-YOH">
-                                                <rect key="frame" x="99" y="15" width="135.5" height="30"/>
+                                                <rect key="frame" x="99" y="15" width="136" height="30"/>
                                                 <animations/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                         </subviews>
                                         <animations/>
-                                        <color key="backgroundColor" red="0.47450980390000003" green="0.97254901959999995" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstItem="Phc-x5-YOH" firstAttribute="centerX" secondItem="KPp-mc-t0x" secondAttribute="centerX" id="Jvn-cr-7uh"/>
                                             <constraint firstAttribute="height" constant="60" id="Umf-1D-vvH"/>
@@ -48,7 +47,6 @@
                                     </view>
                                 </subviews>
                                 <animations/>
-                                <color key="backgroundColor" red="0.98348416289999996" green="0.73859743919999998" blue="0.89119477430000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="KPp-mc-t0x" firstAttribute="centerY" secondItem="c0U-3k-Nlf" secondAttribute="centerY" id="S0r-wa-WDE"/>
                                     <constraint firstAttribute="height" constant="100" id="UCH-l1-LRA"/>

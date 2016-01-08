@@ -123,17 +123,13 @@
     [self handleKeyboard:notification keyboardAction:KeyboardActionShow];
 }
 
-//UIKeyboardWillChangeFrameNotification 是为了解决ios9 对于 第三方键盘 UIKeyboardWillShowNotification漏发的问题
-//UIKeyboardWillChangeFrameNotification会在UIKeyboardWillHideNotification之后发出(好像被苹果改了，顺序调转)
-//keyboardWillChangeFrame除了show动作，其他不处理
+//UIKeyboardWillChangeFrameNotification 可解决ios9 对于 第三方键盘 UIKeyboardWillShowNotification漏发的问题
 - (void)keyboardWillChangeFrame:(NSNotification *)notification {
     
     if(self.keyboardInfo.action == KeyboardActionShow){
         //只要前一次是show，这次change就是show
 //        [self handleKeyboard:notification keyboardAction:KeyboardActionShow];
     }
-    
-    
 }
 
 - (void)keyboardWillHide:(NSNotification *)notification {

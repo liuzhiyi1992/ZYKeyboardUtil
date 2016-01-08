@@ -16,6 +16,7 @@
 		484B8EEC1C3E18FD00CBA902 /* ZYKeyboardUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 484B8EEB1C3E18FD00CBA902 /* ZYKeyboardUtil.m */; };
 		484B8EF81C3E634700CBA902 /* demo_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 484B8EF61C3E634700CBA902 /* demo_1.jpg */; };
 		484B8EF91C3E634700CBA902 /* keyboardUtil.gif in Resources */ = {isa = PBXBuildFile; fileRef = 484B8EF71C3E634700CBA902 /* keyboardUtil.gif */; };
+		4880F6CF1C3F71D30004AE7F /* manyTimePopup.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4880F6CE1C3F71D30004AE7F /* manyTimePopup.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		484B8EEB1C3E18FD00CBA902 /* ZYKeyboardUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYKeyboardUtil.m; sourceTree = "<group>"; };
 		484B8EF61C3E634700CBA902 /* demo_1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = demo_1.jpg; sourceTree = "<group>"; };
 		484B8EF71C3E634700CBA902 /* keyboardUtil.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = keyboardUtil.gif; sourceTree = "<group>"; };
+		4880F6CE1C3F71D30004AE7F /* manyTimePopup.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = manyTimePopup.gif; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 			children = (
 				484B8EF61C3E634700CBA902 /* demo_1.jpg */,
 				484B8EF71C3E634700CBA902 /* keyboardUtil.gif */,
+				4880F6CE1C3F71D30004AE7F /* manyTimePopup.gif */,
 			);
 			path = DisplayFile;
 			sourceTree = "<group>";
@@ -164,6 +167,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				484B8EDC1C3E188A00CBA902 /* LaunchScreen.storyboard in Resources */,
+				4880F6CF1C3F71D30004AE7F /* manyTimePopup.gif in Resources */,
 				484B8EF91C3E634700CBA902 /* keyboardUtil.gif in Resources */,
 				484B8ED91C3E188A00CBA902 /* Assets.xcassets in Resources */,
 				484B8EF81C3E634700CBA902 /* demo_1.jpg in Resources */,
