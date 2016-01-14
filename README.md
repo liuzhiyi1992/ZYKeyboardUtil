@@ -73,4 +73,4 @@ control the animation duration
 That all, thanks。
 
 #**License：** 
-ZYKeyboard is available under the MIT license. See the LICENSE file for more info.
+ZYKeyboardUtil is available under the MIT license. See the LICENSE file for more info.
