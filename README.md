@@ -34,6 +34,7 @@ control the animation duration
 - heightIncrement：单次键盘变化增量  
 - action：键盘事件枚举  
 - isSameAction：是否同一种动作    
+<br>
 **func：**  
 - fillKeyboardInfoWithDuration:frameBegin:frameEnd:heightIncrement:action:isSameAction:    
 为KeyboardInfo各属性赋值。  
@@ -46,6 +47,7 @@ control the animation duration
 - animateWhenKeyboardAppearBlock：弹出Block  
 - animateWhenKeyboardDisappearBlock：收起Block  
 - printKeyboardInfoBlock：输出键盘信息Block    
+<br>
 **func：**  
 - setAnimateWhenKeyboardAppearBlock:    
 - setAnimateWhenKeyboardDisappearBlock:  
