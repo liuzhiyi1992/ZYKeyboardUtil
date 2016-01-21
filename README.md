@@ -28,9 +28,9 @@ control the animation duration
 ###Class：
 ####-KeyboardInfo:
 **property：**  
--animationDuration:  响应动画的过程时长  
--frameBegin：触发键盘事件前键盘frame  
--frameEnd：变化后键盘frame  
+- animationDuration:  响应动画的过程时长  
+- frameBegin：触发键盘事件前键盘frame  
+- frameEnd：变化后键盘frame  
 -heightIncrement：单次键盘变化增量  
 -action：键盘事件枚举  
 -isSameAction：是否同一种动作    
