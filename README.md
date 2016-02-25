@@ -28,35 +28,39 @@ control the animation duration
 ###Class：
 ####-KeyboardInfo:
 **property：**  
--animationDuration:  响应动画的过程时长  
--frameBegin：触发键盘事件前键盘frame  
--frameEnd：变化后键盘frame  
--heightIncrement：单次键盘变化增量  
--action：键盘事件枚举  
--isSameAction：是否同一种动作    
+- animationDuration:  响应动画的过程时长  
+- frameBegin：触发键盘事件前键盘frame  
+- frameEnd：变化后键盘frame  
+- heightIncrement：单次键盘变化增量  
+- action：键盘事件枚举  
+- isSameAction：是否同一种动作    
+
 **func：**  
--fillKeyboardInfoWithDuration:frameBegin:frameEnd:heightIncrement:action:isSameAction:    
+- fillKeyboardInfoWithDuration:frameBegin:frameEnd:heightIncrement:action:isSameAction:    
 为KeyboardInfo各属性赋值。  
 
 ####-ZYKeyboardUtil:  
 **property：**  
--appearPostIndex：键盘分次弹出情况中 弹出 的次数
--keyboardInfo  
--haveRegisterObserver：是否已经注册监听者  
--animateWhenKeyboardAppearBlock：弹出Block  
--animateWhenKeyboardDisappearBlock：收起Block  
--printKeyboardInfoBlock：输出键盘信息Block    
+- appearPostIndex：键盘分次弹出情况中 弹出 的次数
+- keyboardInfo  
+- haveRegisterObserver：是否已经注册监听者  
+- animateWhenKeyboardAppearBlock：弹出Block  
+- animateWhenKeyboardDisappearBlock：收起Block  
+- printKeyboardInfoBlock：输出键盘信息Block    
+
 **func：**  
--setAnimateWhenKeyboardAppearBlock:    
--setAnimateWhenKeyboardDisappearBlock:  
--setPrintKeyboardInfoBlock:    
+- setAnimateWhenKeyboardAppearBlock:    
+- setAnimateWhenKeyboardDisappearBlock:  
+- setPrintKeyboardInfoBlock:    
 
 
 #**Usage：**  
-```self.keyboardUtil = [[ZYKeyboardUtil alloc] init];```  
+```objc
+self.keyboardUtil = [[ZYKeyboardUtil alloc] init];
+```  
 创建一个ZYKeyboard对象，为了让其生存在整个页面实现功能的时间段内，让你的controller持有他吧。
 
-```
+```objc
 [_keyboardUtil setAnimateWhenKeyboardAppearBlock:^(int appearPostIndex, CGRect keyboardRect, CGFloat keyboardHeight, CGFloat keyboardHeightIncrement) {
     //do something when keyboard appear
 }];
@@ -72,4 +76,5 @@ control the animation duration
 
 That all, thanks。
 
-
+#**License：** 
+ZYKeyboardUtil is available under the MIT license. See the LICENSE file for more info.
