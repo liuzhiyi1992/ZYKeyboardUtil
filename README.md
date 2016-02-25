@@ -18,11 +18,9 @@ ZYKeyboardUtil 通过对每次键盘展开时的增量heightIncrement作处理 �
 #**explain：**
 #####写在前面：
 ZYKeyboardUtil 通过lazy方式注册键盘通知监听者，核心工作围绕一个model和三个Block，内部类KeyboardInfo作为model存储着每次处理时所需的键盘信息。animateWhenKeyboardAppearBlock作键盘展示时的处理，animateWhenKeyboardDisappearBlock作键盘收起时的处理，而printKeyboardInfoBlock用作在必要时输出键盘信息。AppearBlock和DisappearBlock统一做了UIViewAnimation，使用时只需要编写需要的界面变化即可。
-
-
-###constant：
-#####\#define DURATION_ANIMATION  
-control the animation duration
+  
+#**CocoaPods：**  
+```pod 'ZYKeyboardUtil'```  
 
 <br>
 ###Class：
