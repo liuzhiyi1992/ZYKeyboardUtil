@@ -32,7 +32,8 @@
      self.keyboardUtil = [[ZYKeyboardUtil alloc] init];
     
     __unsafe_unretained ViewController *weakSelf = self;
-    
+    //--------use animateWhenKeyboardAppearBlockAutomaticAnim, animateWhenKeyboardAppearBlock must be nil.--------
+    /*
     [_keyboardUtil setAnimateWhenKeyboardAppearBlock:^(int appearPostIndex, CGRect keyboardRect, CGFloat keyboardHeight, CGFloat keyboardHeightIncrement) {
         
         NSLog(@"\n\n键盘弹出来第 %d 次了~  高度比上一次增加了%0.f  当前高度是:%0.f"  , appearPostIndex, keyboardHeightIncrement, keyboardHeight);
@@ -43,12 +44,18 @@
         
         if (CGRectGetMinY(keyboardRect) - MARGIN_KEYBOARD < CGRectGetMaxY(convertRect)) {
             CGFloat signedDiff = CGRectGetMinY(keyboardRect) - CGRectGetMaxY(convertRect) - MARGIN_KEYBOARD;
-            //uodateOriginY
+            //updateOriginY
             CGFloat newOriginY = CGRectGetMinY(weakSelf.view.frame) + signedDiff;
             weakSelf.view.frame = CGRectMake(weakSelf.view.frame.origin.x, newOriginY, weakSelf.view.frame.size.width, weakSelf.view.frame.size.height);
         }
     }];
+     */
     
+    //--------use animateWhenKeyboardAppearBlock, animateWhenKeyboardAppearBlockAutomaticAnim will lose effectiveness.--------
+    [_keyboardUtil setAnimateWhenKeyboardAppearBlockAutomaticAnim:^NSDictionary *{
+        NSDictionary *adaptiveDict = [NSDictionary dictionaryWithObjectsAndKeys:weakSelf.mainTextField, ADAPTIVE_VIEW, weakSelf.view, CONTROLLER_VIEW, nil];
+        return adaptiveDict;
+    }];
     
     [_keyboardUtil setAnimateWhenKeyboardDisappearBlock:^(CGFloat keyboardHeight) {
         NSLog(@"\n\n键盘在收起来~  上次高度为:+%f", keyboardHeight);
