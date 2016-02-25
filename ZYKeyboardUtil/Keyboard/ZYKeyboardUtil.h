@@ -55,12 +55,12 @@ typedef enum {
 typedef void (^animateWhenKeyboardAppearBlock)(int appearPostIndex, CGRect keyboardRect, CGFloat keyboardHeight, CGFloat keyboardHeightIncrement);
 typedef void (^animateWhenKeyboardDisappearBlock)(CGFloat keyboardHeight);
 typedef void (^printKeyboardInfoBlock)(ZYKeyboardUtil *keyboardUtil, KeyboardInfo *keyboardInfo);
-typedef NSDictionary* (^animateWhenKeyboardAppearBlockAutomaticAnim)();
+typedef NSDictionary* (^animateWhenKeyboardAppearAutomaticAnimBlock)();
 
 
 - (void)setAnimateWhenKeyboardAppearBlock:(animateWhenKeyboardAppearBlock)animateWhenKeyboardAppearBlock;
 
-- (void)setAnimateWhenKeyboardAppearBlockAutomaticAnim:(animateWhenKeyboardAppearBlockAutomaticAnim)animateWhenKeyboardAppearBlockAutomaticAnim;
+- (void)setAnimateWhenKeyboardAppearAutomaticAnimBlock:(animateWhenKeyboardAppearAutomaticAnimBlock)animateWhenKeyboardAppearAutomaticAnimBlock;
 
 - (void)setAnimateWhenKeyboardDisappearBlock:(animateWhenKeyboardDisappearBlock)animateWhenKeyboardDisappearBlock;
 

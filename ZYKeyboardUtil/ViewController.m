@@ -52,7 +52,7 @@
      */
     
     //--------use animateWhenKeyboardAppearBlock, animateWhenKeyboardAppearBlockAutomaticAnim will lose effectiveness.--------
-    [_keyboardUtil setAnimateWhenKeyboardAppearBlockAutomaticAnim:^NSDictionary *{
+    [_keyboardUtil setAnimateWhenKeyboardAppearAutomaticAnimBlock:^NSDictionary *{
         NSDictionary *adaptiveDict = [NSDictionary dictionaryWithObjectsAndKeys:weakSelf.mainTextField, ADAPTIVE_VIEW, weakSelf.view, CONTROLLER_VIEW, nil];
         return adaptiveDict;
     }];

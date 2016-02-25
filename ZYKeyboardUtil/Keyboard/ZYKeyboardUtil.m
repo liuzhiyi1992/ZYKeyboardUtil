@@ -20,7 +20,7 @@
 
 
 @property (copy, nonatomic) animateWhenKeyboardAppearBlock animateWhenKeyboardAppearBlock;
-@property (copy, nonatomic) animateWhenKeyboardAppearBlockAutomaticAnim animateWhenKeyboardAppearBlockAutomaticAnim;
+@property (copy, nonatomic) animateWhenKeyboardAppearAutomaticAnimBlock animateWhenKeyboardAppearAutomaticAnimBlock;
 @property (copy, nonatomic) animateWhenKeyboardDisappearBlock animateWhenKeyboardDisappearBlock;
 @property (copy, nonatomic) printKeyboardInfoBlock printKeyboardInfoBlock;
 
@@ -85,8 +85,8 @@
                     if(self.animateWhenKeyboardAppearBlock != nil) {
                         self.animateWhenKeyboardAppearBlock(++self.appearPostIndex, keyboardInfo.frameEnd, keyboardInfo.frameEnd.size.height, keyboardInfo.heightIncrement);
 //                        self.appearPostIndex ++;
-                    } else if (self.animateWhenKeyboardAppearBlockAutomaticAnim != nil) {
-                        NSDictionary *adaptiveDict =  self.animateWhenKeyboardAppearBlockAutomaticAnim();
+                    } else if (self.animateWhenKeyboardAppearAutomaticAnimBlock != nil) {
+                        NSDictionary *adaptiveDict =  self.animateWhenKeyboardAppearAutomaticAnimBlock();
                         UIView *keyboardAdaptiveView = adaptiveDict[ADAPTIVE_VIEW];
                         UIView *controllerView = adaptiveDict[CONTROLLER_VIEW];
                         [self fitKeyboardAutoAutomatically:keyboardAdaptiveView controllerView:controllerView keyboardRect:keyboardInfo.frameEnd];
@@ -127,8 +127,8 @@
     [self registerObserver];
 }
 
-- (void)setAnimateWhenKeyboardAppearBlockAutomaticAnim:(animateWhenKeyboardAppearBlockAutomaticAnim)animateWhenKeyboardAppearBlockAutomaticAnim {
-    _animateWhenKeyboardAppearBlockAutomaticAnim = animateWhenKeyboardAppearBlockAutomaticAnim;
+- (void)setAnimateWhenKeyboardAppearAutomaticAnimBlock:(animateWhenKeyboardAppearAutomaticAnimBlock)animateWhenKeyboardAppearBlockAutomaticAnim {
+    _animateWhenKeyboardAppearAutomaticAnimBlock = animateWhenKeyboardAppearBlockAutomaticAnim;
     [self registerObserver];
 }
 
