@@ -45,12 +45,12 @@ ZYKeyboardUtil 通过lazy方式注册键盘通知监听者，核心工作围绕�
 - animateWhenKeyboardAppearBlock：弹出Block  
 - animateWhenKeyboardDisappearBlock：收起Block  
 - printKeyboardInfoBlock：输出键盘信息Block    
-
+- animateWhenKeyboardAppearBlockAutomaticAnim：自动处理键盘遮盖事件Block（需提供输入view和controllerView）  
 **func：**  
 - setAnimateWhenKeyboardAppearBlock:    
 - setAnimateWhenKeyboardDisappearBlock:  
 - setPrintKeyboardInfoBlock:    
-
+- setAnimateWhenKeyboardAppearBlockAutomaticAnim:
 
 #**Usage：**  
 ```objc
@@ -69,6 +69,13 @@ self.keyboardUtil = [[ZYKeyboardUtil alloc] init];
 
 [_keyboardUtil setPrintKeyboardInfoBlock:^(ZYKeyboardUtil *keyboardUtil, KeyboardInfo *keyboardInfo) {
     //you can get keyboardInfo hear when animation ended
+}];
+```  
+#####0.2.1版本更新后，增加animateWhenKeyboardAppearAutomaticAnimBlock，在Block中return一个字典[含两个value: 你的inputView(key:ADAPTIVE_VIEW(宏),controller的view(key:CONTROLLER_VIEW(宏)))]即可，不同animateWhenKeyboardAppearBlock同时使用，否则后者优先。   例子：
+```
+[_keyboardUtil setAnimateWhenKeyboardAppearAutomaticAnimBlock:^NSDictionary *{
+    NSDictionary *adaptiveDict = [NSDictionary dictionaryWithObjectsAndKeys:weakSelf.mainTextField, ADAPTIVE_VIEW, weakSelf.view, CONTROLLER_VIEW, nil];
+    return adaptiveDict;
 }];
 ```
 
