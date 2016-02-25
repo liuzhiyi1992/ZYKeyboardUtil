@@ -22,11 +22,6 @@ ZYKeyboardUtil 通过lazy方式注册键盘通知监听者，核心工作围绕�
 #**CocoaPods：**  
 ```pod 'ZYKeyboardUtil'```  
 
-
-###constant：
-#####\#define DURATION_ANIMATION  
-control the animation duration
-
 <br>
 ###Class：
 ####-KeyboardInfo:
