@@ -51,8 +51,9 @@ ZYKeyboardUtil 通过lazy方式注册键盘通知监听者，核心工作围绕�
 - setAnimateWhenKeyboardAppearBlock:    
 - setAnimateWhenKeyboardDisappearBlock:  
 - setPrintKeyboardInfoBlock:    
-- setAnimateWhenKeyboardAppearBlockAutomaticAnim:
-<br>
+- setAnimateWhenKeyboardAppearBlockAutomaticAnim:  
+- 
+<br>  
 #**Usage：**  
 ```objc
 self.keyboardUtil = [[ZYKeyboardUtil alloc] init];
