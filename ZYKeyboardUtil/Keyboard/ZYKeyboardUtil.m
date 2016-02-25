@@ -8,6 +8,7 @@
 
 #import "ZYKeyboardUtil.h"
 
+#define MARGIN_KEYBOARD_DEFAULT 10
 
 
 @interface ZYKeyboardUtil()
@@ -19,6 +20,7 @@
 
 
 @property (copy, nonatomic) animateWhenKeyboardAppearBlock animateWhenKeyboardAppearBlock;
+@property (copy, nonatomic) animateWhenKeyboardAppearBlockAutomaticAnim animateWhenKeyboardAppearBlockAutomaticAnim;
 @property (copy, nonatomic) animateWhenKeyboardDisappearBlock animateWhenKeyboardDisappearBlock;
 @property (copy, nonatomic) printKeyboardInfoBlock printKeyboardInfoBlock;
 
@@ -83,6 +85,11 @@
                     if(self.animateWhenKeyboardAppearBlock != nil) {
                         self.animateWhenKeyboardAppearBlock(++self.appearPostIndex, keyboardInfo.frameEnd, keyboardInfo.frameEnd.size.height, keyboardInfo.heightIncrement);
 //                        self.appearPostIndex ++;
+                    } else if (self.animateWhenKeyboardAppearBlockAutomaticAnim != nil) {
+                        NSDictionary *adaptiveDict =  self.animateWhenKeyboardAppearBlockAutomaticAnim();
+                        UIView *keyboardAdaptiveView = adaptiveDict[ADAPTIVE_VIEW];
+                        UIView *controllerView = adaptiveDict[CONTROLLER_VIEW];
+                        [self fitKeyboardAutoAutomatically:keyboardAdaptiveView controllerView:controllerView keyboardRect:keyboardInfo.frameEnd];
                     }
                     break;
                 case KeyboardActionHide:
@@ -102,9 +109,26 @@
     }
 }
 
+- (void)fitKeyboardAutoAutomatically:(UIView *)adaptiveView controllerView:(UIView *)controllerView keyboardRect:(CGRect)keyboardRect {
+    UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+    CGRect convertRect = [adaptiveView.superview convertRect:adaptiveView.frame toView:window];
+    
+    if (CGRectGetMinY(keyboardRect) - MARGIN_KEYBOARD_DEFAULT < CGRectGetMaxY(convertRect)) {
+        CGFloat signedDiff = CGRectGetMinY(keyboardRect) - CGRectGetMaxY(convertRect) - MARGIN_KEYBOARD_DEFAULT;
+        //updateOriginY
+        CGFloat newOriginY = CGRectGetMinY(controllerView.frame) + signedDiff;
+        controllerView.frame = CGRectMake(controllerView.frame.origin.x, newOriginY, controllerView.frame.size.width, controllerView.frame.size.height);
+    }
+}
+
 #pragma mark - 重写Block set方法，懒加载方式注册观察者
 - (void)setAnimateWhenKeyboardAppearBlock:(animateWhenKeyboardAppearBlock)animateWhenKeyboardAppearBlock {
     _animateWhenKeyboardAppearBlock = animateWhenKeyboardAppearBlock;
+    [self registerObserver];
+}
+
+- (void)setAnimateWhenKeyboardAppearBlockAutomaticAnim:(animateWhenKeyboardAppearBlockAutomaticAnim)animateWhenKeyboardAppearBlockAutomaticAnim {
+    _animateWhenKeyboardAppearBlockAutomaticAnim = animateWhenKeyboardAppearBlockAutomaticAnim;
     [self registerObserver];
 }
 
@@ -147,7 +171,6 @@
     if([UIApplication sharedApplication].applicationState == UIApplicationStateBackground) {
         return;
     }
-    
     //解析通知
     NSDictionary *infoDict = [notification userInfo];
     CGRect frameBegin = [[infoDict objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];

@@ -10,6 +10,8 @@
 #import <UIKit/UIKit.h>
 
 #define DURATION_ANIMATION      0.5
+#define ADAPTIVE_VIEW @"ADAPTIVE_VIEW"
+#define CONTROLLER_VIEW @"CONTROLLER_VIEW"
 
 typedef enum {
     KeyboardActionDefault,
@@ -46,7 +48,6 @@ typedef enum {
 
 
 
-
 #pragma mark - ZYKeyboardUtil
 @interface ZYKeyboardUtil : NSObject
 
@@ -54,9 +55,12 @@ typedef enum {
 typedef void (^animateWhenKeyboardAppearBlock)(int appearPostIndex, CGRect keyboardRect, CGFloat keyboardHeight, CGFloat keyboardHeightIncrement);
 typedef void (^animateWhenKeyboardDisappearBlock)(CGFloat keyboardHeight);
 typedef void (^printKeyboardInfoBlock)(ZYKeyboardUtil *keyboardUtil, KeyboardInfo *keyboardInfo);
+typedef NSDictionary* (^animateWhenKeyboardAppearBlockAutomaticAnim)();
 
 
 - (void)setAnimateWhenKeyboardAppearBlock:(animateWhenKeyboardAppearBlock)animateWhenKeyboardAppearBlock;
+
+- (void)setAnimateWhenKeyboardAppearBlockAutomaticAnim:(animateWhenKeyboardAppearBlockAutomaticAnim)animateWhenKeyboardAppearBlockAutomaticAnim;
 
 - (void)setAnimateWhenKeyboardDisappearBlock:(animateWhenKeyboardDisappearBlock)animateWhenKeyboardDisappearBlock;
 
