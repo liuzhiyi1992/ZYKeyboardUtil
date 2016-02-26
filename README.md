@@ -1,5 +1,6 @@
 # ZYKeyboardUtil
 Util Handed all keyboard events with Block Conveniently  
+<br>
 ![](https://img.shields.io/badge/pod-v0.2.1-blue.svg)
 ![](https://img.shields.io/badge/supporting-objectiveC-yellow.svg)
 ![](https://img.shields.io/badge/Advantage-Automation-red.svg)
@@ -75,7 +76,7 @@ self.keyboardUtil = [[ZYKeyboardUtil alloc] init];
     //you can get keyboardInfo hear when animation ended
 }];
 ```  
-
+<br>
 #####0.2.1版本更新后，增加animateWhenKeyboardAppearAutomaticAnimBlock，在Block中return一个字典[含两个value: 你的inputView(key:ADAPTIVE_VIEW(宏),controller的view(key:CONTROLLER_VIEW(宏)))]即可，不同animateWhenKeyboardAppearBlock同时使用，否则后者优先。   例子：
 ```objc
 [_keyboardUtil setAnimateWhenKeyboardAppearAutomaticAnimBlock:^NSDictionary *{
