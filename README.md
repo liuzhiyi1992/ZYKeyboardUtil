@@ -1,6 +1,8 @@
 # ZYKeyboardUtil
-Util Handed all keyboard events with Block Conveniently
-
+Util Handed all keyboard events with Block Conveniently  
+![](https://img.shields.io/badge/pod-v0.2.1-blue.svg)
+![](https://img.shields.io/badge/supporting-objectiveC-yellow.svg)
+![](https://img.shields.io/badge/Advantage-Automation-red.svg)
 
 <br>
 #**Features：**
