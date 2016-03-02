@@ -32,6 +32,8 @@
      self.keyboardUtil = [[ZYKeyboardUtil alloc] init];
     
     __unsafe_unretained ViewController *weakSelf = self;
+    
+    //自定义键盘弹出处理
     //--------use animateWhenKeyboardAppearBlockAutomaticAnim, animateWhenKeyboardAppearBlock must be nil.--------
     /*
     [_keyboardUtil setAnimateWhenKeyboardAppearBlock:^(int appearPostIndex, CGRect keyboardRect, CGFloat keyboardHeight, CGFloat keyboardHeightIncrement) {
@@ -51,6 +53,7 @@
     }];
      */
     
+    //全自动键盘弹出处理（需将inputView和controller.view传入）
     //--------use animateWhenKeyboardAppearBlock, animateWhenKeyboardAppearBlockAutomaticAnim will lose effectiveness.--------
     [_keyboardUtil setAnimateWhenKeyboardAppearAutomaticAnimBlock:^NSDictionary *{
         NSDictionary *adaptiveDict = [NSDictionary dictionaryWithObjectsAndKeys:weakSelf.mainTextField, ADAPTIVE_VIEW, weakSelf.view, CONTROLLER_VIEW, nil];
