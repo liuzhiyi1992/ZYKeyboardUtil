@@ -3,7 +3,8 @@ Util Handed all keyboard events with Block Conveniently
 <br>
 ![](https://img.shields.io/badge/pod-v0.2.1-blue.svg)
 ![](https://img.shields.io/badge/supporting-objectiveC-yellow.svg)
-![](https://img.shields.io/badge/Advantage-Automation-red.svg)
+![](https://img.shields.io/badge/Advantage-Automation-red.svg)  
+-v0.2.1更新全自动处理键盘遮盖事件（需配置animateWhenKeyboardAppearAutomaticAnimBlock）,具体使用参照Demo
 
 <br>
 #**Features：**
