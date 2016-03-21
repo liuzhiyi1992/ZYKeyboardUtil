@@ -12,6 +12,7 @@
 #define DURATION_ANIMATION      0.5
 #define ADAPTIVE_VIEW @"ADAPTIVE_VIEW"
 #define CONTROLLER_VIEW @"CONTROLLER_VIEW"
+static NSString * const ADAPTIVE_VIEW_CONTROLLER = @"ADAPTIVE_VIEW_CONTROLLER";
 
 typedef enum {
     KeyboardActionDefault,

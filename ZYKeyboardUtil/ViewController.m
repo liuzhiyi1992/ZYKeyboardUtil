@@ -56,17 +56,17 @@
     //全自动键盘弹出处理（需将inputView和controller.view传入）
     //--------use animateWhenKeyboardAppearBlock, animateWhenKeyboardAppearBlockAutomaticAnim will lose effectiveness.--------
     [_keyboardUtil setAnimateWhenKeyboardAppearAutomaticAnimBlock:^NSDictionary *{
-        NSDictionary *adaptiveDict = [NSDictionary dictionaryWithObjectsAndKeys:weakSelf.mainTextField, ADAPTIVE_VIEW, weakSelf.view, CONTROLLER_VIEW, nil];
+        NSDictionary *adaptiveDict = [NSDictionary dictionaryWithObjectsAndKeys:weakSelf.mainTextField, ADAPTIVE_VIEW, weakSelf.view, CONTROLLER_VIEW, weakSelf, ADAPTIVE_VIEW_CONTROLLER, nil];
         return adaptiveDict;
     }];
     
-    [_keyboardUtil setAnimateWhenKeyboardDisappearBlock:^(CGFloat keyboardHeight) {
-        NSLog(@"\n\n键盘在收起来~  上次高度为:+%f", keyboardHeight);
-        
-        //uodateOriginY
-        CGFloat newOriginY = 0;
-        weakSelf.view.frame = CGRectMake(weakSelf.view.frame.origin.x, newOriginY, weakSelf.view.frame.size.width, weakSelf.view.frame.size.height);
-    }];
+//    [_keyboardUtil setAnimateWhenKeyboardDisappearBlock:^(CGFloat keyboardHeight) {
+//        NSLog(@"\n\n键盘在收起来~  上次高度为:+%f", keyboardHeight);
+//        
+//        //uodateOriginY
+//        CGFloat newOriginY = 0;
+//        weakSelf.view.frame = CGRectMake(weakSelf.view.frame.origin.x, newOriginY, weakSelf.view.frame.size.width, weakSelf.view.frame.size.height);
+//    }];
     
     
     [_keyboardUtil setPrintKeyboardInfoBlock:^(ZYKeyboardUtil *keyboardUtil, KeyboardInfo *keyboardInfo) {

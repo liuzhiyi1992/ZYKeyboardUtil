@@ -18,6 +18,8 @@
 @property (strong, nonatomic) KeyboardInfo *keyboardInfo;
 @property (assign, nonatomic) BOOL haveRegisterObserver;
 
+@property (weak, nonatomic) UIViewController *adaptiveController;
+
 
 @property (copy, nonatomic) animateWhenKeyboardAppearBlock animateWhenKeyboardAppearBlock;
 @property (copy, nonatomic) animateWhenKeyboardAppearAutomaticAnimBlock animateWhenKeyboardAppearAutomaticAnimBlock;
@@ -29,23 +31,6 @@
 
 @implementation ZYKeyboardUtil
 
-//不能用单例
-//static ZYKeyboardUtil *_instance = nil;
-//+ (ZYKeyboardUtil *)shareZYKeyboardUtil {
-//    static dispatch_once_t onceToken;
-//    dispatch_once(&onceToken, ^{
-//        _instance = [[self alloc] init];
-//    });
-//    return _instance;
-//}
-
-- (instancetype)init {
-    self = [super init];
-    if(self) {
-//        [self registerObserver];
-    }
-    return self;
-}
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -84,18 +69,21 @@
                 case KeyboardActionShow:
                     if(self.animateWhenKeyboardAppearBlock != nil) {
                         self.animateWhenKeyboardAppearBlock(++self.appearPostIndex, keyboardInfo.frameEnd, keyboardInfo.frameEnd.size.height, keyboardInfo.heightIncrement);
-//                        self.appearPostIndex ++;
                     } else if (self.animateWhenKeyboardAppearAutomaticAnimBlock != nil) {
                         NSDictionary *adaptiveDict =  self.animateWhenKeyboardAppearAutomaticAnimBlock();
                         UIView *keyboardAdaptiveView = adaptiveDict[ADAPTIVE_VIEW];
                         UIView *controllerView = adaptiveDict[CONTROLLER_VIEW];
-                        [self fitKeyboardAutoAutomatically:keyboardAdaptiveView controllerView:controllerView keyboardRect:keyboardInfo.frameEnd];
+                        self.adaptiveController = adaptiveDict[ADAPTIVE_VIEW_CONTROLLER];
+                        [self fitKeyboardAutomatically:keyboardAdaptiveView controllerView:controllerView keyboardRect:keyboardInfo.frameEnd];
                     }
                     break;
                 case KeyboardActionHide:
                     if(self.animateWhenKeyboardDisappearBlock != nil) {
                         self.animateWhenKeyboardDisappearBlock(keyboardInfo.frameEnd.size.height);
                         self.appearPostIndex = 0;
+                    } else {
+                        //自动还原
+                        [self restoreKeyboardAutomatically];
                     }
                     break;
                 default:
@@ -109,7 +97,7 @@
     }
 }
 
-- (void)fitKeyboardAutoAutomatically:(UIView *)adaptiveView controllerView:(UIView *)controllerView keyboardRect:(CGRect)keyboardRect {
+- (void)fitKeyboardAutomatically:(UIView *)adaptiveView controllerView:(UIView *)controllerView keyboardRect:(CGRect)keyboardRect {
     UIWindow *window = [[UIApplication sharedApplication] keyWindow];
     CGRect convertRect = [adaptiveView.superview convertRect:adaptiveView.frame toView:window];
     
@@ -118,6 +106,17 @@
         //updateOriginY
         CGFloat newOriginY = CGRectGetMinY(controllerView.frame) + signedDiff;
         controllerView.frame = CGRectMake(controllerView.frame.origin.x, newOriginY, controllerView.frame.size.width, controllerView.frame.size.height);
+    }
+}
+
+- (void)restoreKeyboardAutomatically {
+    CGRect tempFrame = self.adaptiveController.view.frame;
+    if (self.adaptiveController.navigationController == nil || self.adaptiveController.navigationController.navigationBar.hidden == YES) {
+        tempFrame.origin.y = 0.f;
+        self.adaptiveController.view.frame = tempFrame;
+    } else {
+        tempFrame.origin.y = 64.f;
+        self.adaptiveController.view.frame = tempFrame;
     }
 }
 
