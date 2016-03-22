@@ -17,9 +17,7 @@
 @property (assign, nonatomic) int appearPostIndex;
 @property (strong, nonatomic) KeyboardInfo *keyboardInfo;
 @property (assign, nonatomic) BOOL haveRegisterObserver;
-
 @property (weak, nonatomic) UIViewController *adaptiveController;
-
 
 @property (copy, nonatomic) animateWhenKeyboardAppearBlock animateWhenKeyboardAppearBlock;
 @property (copy, nonatomic) animateWhenKeyboardAppearAutomaticAnimBlock animateWhenKeyboardAppearAutomaticAnimBlock;
@@ -36,7 +34,7 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-#pragma mark - 懒加载方式注册观察者
+#pragma mark - lazy注册观察者
 - (void)registerObserver {
     if (_haveRegisterObserver == YES) {
         return;
@@ -150,7 +148,6 @@
 - (void)keyboardWillChangeFrame:(NSNotification *)notification {
     
     if(self.keyboardInfo.action == KeyboardActionShow){
-        //只要前一次是show，这次change就是show
 //        [self handleKeyboard:notification keyboardAction:KeyboardActionShow];
     }
 }
@@ -166,7 +163,7 @@
 
 #pragma mark 处理键盘事件
 - (void)handleKeyboard:(NSNotification *)notification keyboardAction:(KeyboardAction)keyboardAction {
-    //home键使应用进入后台也会有某些通知,不响应
+    //进入后台触发某些通知,不响应
     if([UIApplication sharedApplication].applicationState == UIApplicationStateBackground) {
         return;
     }
@@ -207,8 +204,6 @@
 }
 
 @end
-
-
 
 
 

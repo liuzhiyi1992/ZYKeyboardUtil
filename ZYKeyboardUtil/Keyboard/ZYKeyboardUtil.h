@@ -20,17 +20,6 @@ typedef enum {
     KeyboardActionHide
 }KeyboardAction;
 
-//typedef struct {
-//    CGFloat animationDuration;
-//    CGRect frameBegin;
-//    CGRect frameEnd;
-//    CGFloat heightIncrement;
-//    KeyboardAction action;
-//    BOOL isSameAction;
-//    //    animation的Curve(option)(考虑)
-//}KeyboardInfo;
-
-
 #pragma mark - KeyboardInfo(model)
 @interface KeyboardInfo : NSObject
 
