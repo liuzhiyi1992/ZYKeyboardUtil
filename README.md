@@ -26,7 +26,7 @@ ZYKeyboardUtil 通过lazy方式注册键盘通知监听者，核心工作围绕�
   
 <br>
 #**CocoaPods：**  
-```pod 'ZYKeyboardUtil', '~> 0.2.1'```  
+```pod 'ZYKeyboardUtil', '~> 0.3.1'```  
 
 <br>
 ###Class：
