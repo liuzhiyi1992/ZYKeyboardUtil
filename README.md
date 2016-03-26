@@ -1,7 +1,7 @@
 # ZYKeyboardUtil
 Util Handed all keyboard events with Block Conveniently  
 <br>
-![](https://img.shields.io/badge/pod-v0.2.1-blue.svg)
+![](https://img.shields.io/badge/pod-v0.3.1-blue.svg)
 ![](https://img.shields.io/badge/supporting-objectiveC-yellow.svg)
 ![](https://img.shields.io/badge/Advantage-Automation-red.svg)  
 <br>
@@ -26,7 +26,7 @@ ZYKeyboardUtil 通过lazy方式注册键盘通知监听者，核心工作围绕�
   
 <br>
 #**CocoaPods：**  
-```pod 'ZYKeyboardUtil', '~> 0.2.1'```  
+```pod 'ZYKeyboardUtil', '~> 0.3.1'```  
 
 <br>
 ###Class：
