@@ -9,10 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#define DURATION_ANIMATION      0.5
-#define ADAPTIVE_VIEW @"ADAPTIVE_VIEW"
-#define CONTROLLER_VIEW @"CONTROLLER_VIEW"
-static NSString * const ADAPTIVE_VIEW_CONTROLLER = @"ADAPTIVE_VIEW_CONTROLLER";
+static CGFloat const DURATION_ANIMATION = 0.5f;
 
 typedef enum {
     KeyboardActionDefault,

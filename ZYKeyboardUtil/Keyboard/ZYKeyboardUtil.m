@@ -266,3 +266,6 @@
 }
 
 @end
+
+//ZYKeyboardUtil is available under the MIT license.
+//Please visit https://github.com/liuzhiyi1992/ZYKeyboardUtil for details.
