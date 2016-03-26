@@ -15,6 +15,10 @@
 
 @property (strong, nonatomic) ZYKeyboardUtil *keyboardUtil;
 @property (weak, nonatomic) IBOutlet UITextField *mainTextField;
+@property (weak, nonatomic) IBOutlet UIView *inputViewBorderView;
+
+@property (weak, nonatomic) IBOutlet UITextField *secondTextField;
+@property (weak, nonatomic) IBOutlet UITextField *thirdTextField;
 
 @end
 
@@ -23,7 +27,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _mainTextField.delegate = self;
+    self.mainTextField.delegate = self;
+    self.secondTextField.delegate = self;
+    self.thirdTextField.delegate = self;
     
     [self configKeyBoardRespond];
 }
@@ -31,10 +37,10 @@
 - (void)configKeyBoardRespond {
      self.keyboardUtil = [[ZYKeyboardUtil alloc] init];
     
-    __unsafe_unretained ViewController *weakSelf = self;
+    __weak ViewController *weakSelf = self;
     
     //自定义键盘弹出处理
-    //--------use animateWhenKeyboardAppearBlockAutomaticAnim, animateWhenKeyboardAppearBlock must be nil.--------
+    #pragma explain - use animateWhenKeyboardAppearAutomaticAnimBlock, animateWhenKeyboardAppearBlock must be nil.
     /*
     [_keyboardUtil setAnimateWhenKeyboardAppearBlock:^(int appearPostIndex, CGRect keyboardRect, CGFloat keyboardHeight, CGFloat keyboardHeightIncrement) {
         
@@ -53,24 +59,29 @@
     }];
      */
     
-    //全自动键盘弹出处理（需将inputView和controller.view传入）
-    //--------use animateWhenKeyboardAppearBlock, animateWhenKeyboardAppearBlockAutomaticAnim will lose effectiveness.--------
-    [_keyboardUtil setAnimateWhenKeyboardAppearAutomaticAnimBlock:^NSDictionary *{
-        NSDictionary *adaptiveDict = [NSDictionary dictionaryWithObjectsAndKeys:weakSelf.mainTextField, ADAPTIVE_VIEW, weakSelf.view, CONTROLLER_VIEW, weakSelf, ADAPTIVE_VIEW_CONTROLLER, nil];
-        return adaptiveDict;
+    
+    //全自动键盘弹出处理 (需调用keyboardUtil 的 adaptiveViewHandleWithController:adaptiveView:)
+    #pragma explain - use animateWhenKeyboardAppearBlock, animateWhenKeyboardAppearAutomaticAnimBlock will be invalid.
+    [_keyboardUtil setAnimateWhenKeyboardAppearAutomaticAnimBlock:^(ZYKeyboardUtil *keyboardUtil) {
+        [keyboardUtil adaptiveViewHandleWithController:weakSelf adaptiveView:weakSelf.inputViewBorderView, weakSelf.secondTextField, weakSelf.thirdTextField, nil];
     }];
     
-//    [_keyboardUtil setAnimateWhenKeyboardDisappearBlock:^(CGFloat keyboardHeight) {
-//        NSLog(@"\n\n键盘在收起来~  上次高度为:+%f", keyboardHeight);
-//        
-//        //uodateOriginY
-//        CGFloat newOriginY = 0;
-//        weakSelf.view.frame = CGRectMake(weakSelf.view.frame.origin.x, newOriginY, weakSelf.view.frame.size.width, weakSelf.view.frame.size.height);
-//    }];
     
-    
-    [_keyboardUtil setPrintKeyboardInfoBlock:^(ZYKeyboardUtil *keyboardUtil, KeyboardInfo *keyboardInfo) {
+    //自定义键盘收起处理(如不配置，则默认启动自动收起处理)
+    #pragma explain - if not configure this Block, automatically itself.
+    /*
+    [_keyboardUtil setAnimateWhenKeyboardDisappearBlock:^(CGFloat keyboardHeight) {
+        NSLog(@"\n\n键盘在收起来~  上次高度为:+%f", keyboardHeight);
         
+        //uodateOriginY
+        CGFloat newOriginY = 0;
+        weakSelf.view.frame = CGRectMake(weakSelf.view.frame.origin.x, newOriginY, weakSelf.view.frame.size.width, weakSelf.view.frame.size.height);
+    }];
+     */
+    
+    
+    //获取键盘信息
+    [_keyboardUtil setPrintKeyboardInfoBlock:^(ZYKeyboardUtil *keyboardUtil, KeyboardInfo *keyboardInfo) {
         NSLog(@"\n\n拿到键盘信息 和 ZYKeyboardUtil对象");
     }];
 }
@@ -83,10 +94,14 @@
 #pragma mark delegate
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     [self.mainTextField resignFirstResponder];
+    [self.secondTextField resignFirstResponder];
+    [self.thirdTextField resignFirstResponder];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
    [self.mainTextField resignFirstResponder];
+    [self.secondTextField resignFirstResponder];
+    [self.thirdTextField resignFirstResponder];
     return YES;
 }
 

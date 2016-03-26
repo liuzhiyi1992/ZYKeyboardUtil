@@ -29,7 +29,6 @@
 
 @implementation ZYKeyboardUtil
 
-
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
@@ -50,49 +49,37 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
 }
 
+- (void)adaptiveViewHandleWithController:(UIViewController *)viewController adaptiveView:(UIView *)adaptiveView, ...NS_REQUIRES_NIL_TERMINATION {
+    NSMutableArray *adaptiveViewList = [NSMutableArray array];
+    [adaptiveViewList addObject:adaptiveView];
+    
+    va_list var_list;
+    va_start(var_list, adaptiveView);
+    UIView *view;
+    while ((view = va_arg(var_list, UIView *))) {
+        [adaptiveViewList addObject:view];
+    }
+    va_end(var_list);
+    
+    for (UIView *adaptiveViews in adaptiveViewList) {
+        UIView *firstResponderView = [self recursionTraverseFindFirstResponderIn:adaptiveViews];
+        if (nil != firstResponderView) {
+            [self fitKeyboardAutomatically:firstResponderView controllerView:viewController.view keyboardRect:_keyboardInfo.frameEnd];
+            self.adaptiveController = viewController;
+            break;
+        }
+    }
+}
 
-#pragma mark - 重写KeyboardInfo set方法，调用animationBlock
-- (void)setKeyboardInfo:(KeyboardInfo *)keyboardInfo {
-    //home键使应用进入后台也会有某些通知
-    if([UIApplication sharedApplication].applicationState == UIApplicationStateBackground) {
-        return;
+//递归视图
+- (UIView *)recursionTraverseFindFirstResponderIn:(UIView *)view {
+    for (UIView *subView in view.subviews) {
+        if ([subView isFirstResponder]) {
+            return subView;
+        }
+        [self recursionTraverseFindFirstResponderIn:subView];
     }
-    
-    _keyboardInfo = keyboardInfo;
-    
-    if(!keyboardInfo.isSameAction || (keyboardInfo.heightIncrement != 0)) {
-        
-        [UIView animateWithDuration:keyboardInfo.animationDuration animations:^{
-            switch (keyboardInfo.action) {
-                case KeyboardActionShow:
-                    if(self.animateWhenKeyboardAppearBlock != nil) {
-                        self.animateWhenKeyboardAppearBlock(++self.appearPostIndex, keyboardInfo.frameEnd, keyboardInfo.frameEnd.size.height, keyboardInfo.heightIncrement);
-                    } else if (self.animateWhenKeyboardAppearAutomaticAnimBlock != nil) {
-                        NSDictionary *adaptiveDict =  self.animateWhenKeyboardAppearAutomaticAnimBlock();
-                        UIView *keyboardAdaptiveView = adaptiveDict[ADAPTIVE_VIEW];
-                        UIView *controllerView = adaptiveDict[CONTROLLER_VIEW];
-                        self.adaptiveController = adaptiveDict[ADAPTIVE_VIEW_CONTROLLER];
-                        [self fitKeyboardAutomatically:keyboardAdaptiveView controllerView:controllerView keyboardRect:keyboardInfo.frameEnd];
-                    }
-                    break;
-                case KeyboardActionHide:
-                    if(self.animateWhenKeyboardDisappearBlock != nil) {
-                        self.animateWhenKeyboardDisappearBlock(keyboardInfo.frameEnd.size.height);
-                        self.appearPostIndex = 0;
-                    } else {
-                        //自动还原
-                        [self restoreKeyboardAutomatically];
-                    }
-                    break;
-                default:
-                    break;
-            }
-        }completion:^(BOOL finished) {
-            if(self.printKeyboardInfoBlock != nil && self.keyboardInfo != nil) {
-                self.printKeyboardInfoBlock(self, keyboardInfo);
-            }
-        }];
-    }
+    return nil;
 }
 
 - (void)fitKeyboardAutomatically:(UIView *)adaptiveView controllerView:(UIView *)controllerView keyboardRect:(CGRect)keyboardRect {
@@ -118,17 +105,72 @@
     }
 }
 
+#pragma mark - 重写KeyboardInfo set方法，调用animationBlock
+- (void)setKeyboardInfo:(KeyboardInfo *)keyboardInfo {
+    //home键使应用进入后台也会有某些通知
+    if([UIApplication sharedApplication].applicationState == UIApplicationStateBackground) {
+        return;
+    }
+    
+    _keyboardInfo = keyboardInfo;
+    
+    if(!keyboardInfo.isSameAction || (keyboardInfo.heightIncrement != 0)) {
+        
+        [UIView animateWithDuration:keyboardInfo.animationDuration animations:^{
+            switch (keyboardInfo.action) {
+                case KeyboardActionShow:
+                    if(self.animateWhenKeyboardAppearBlock != nil) {
+                        self.animateWhenKeyboardAppearBlock(++self.appearPostIndex, keyboardInfo.frameEnd, keyboardInfo.frameEnd.size.height, keyboardInfo.heightIncrement);
+                    } else if (self.animateWhenKeyboardAppearAutomaticAnimBlock != nil) {
+                        self.animateWhenKeyboardAppearAutomaticAnimBlock(self);
+                    }
+                    break;
+                case KeyboardActionHide:
+                    if(self.animateWhenKeyboardDisappearBlock != nil) {
+                        self.animateWhenKeyboardDisappearBlock(keyboardInfo.frameEnd.size.height);
+                        self.appearPostIndex = 0;
+                    } else {
+                        //auto restore
+                        [self restoreKeyboardAutomatically];
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }completion:^(BOOL finished) {
+            if(self.printKeyboardInfoBlock != nil && self.keyboardInfo != nil) {
+                self.printKeyboardInfoBlock(self, keyboardInfo);
+            }
+        }];
+    }
+}
+
 #pragma mark - 重写Block set方法，懒加载方式注册观察者
+/**
+ * @brief handle the covering event youself when keyboard Appear, Animation automatically.
+ *
+ * use animateWhenKeyboardAppearBlock, animateWhenKeyboardAppearAutomaticAnimBlock will be invalid.
+ */
 - (void)setAnimateWhenKeyboardAppearBlock:(animateWhenKeyboardAppearBlock)animateWhenKeyboardAppearBlock {
     _animateWhenKeyboardAppearBlock = animateWhenKeyboardAppearBlock;
     [self registerObserver];
 }
 
-- (void)setAnimateWhenKeyboardAppearAutomaticAnimBlock:(animateWhenKeyboardAppearAutomaticAnimBlock)animateWhenKeyboardAppearBlockAutomaticAnim {
-    _animateWhenKeyboardAppearAutomaticAnimBlock = animateWhenKeyboardAppearBlockAutomaticAnim;
+/**
+ * @brief handle the covering automatically, you must invoke the method adaptiveViewHandleWithController:adaptiveView: by the param keyboardUtil.
+ *
+ * use animateWhenKeyboardAppearAutomaticAnimBlock, animateWhenKeyboardAppearBlock must be nil.
+ */
+- (void)setAnimateWhenKeyboardAppearAutomaticAnimBlock:(animateWhenKeyboardAppearAutomaticAnimBlock)animateWhenKeyboardAppearAutomaticAnimBlock {
+    _animateWhenKeyboardAppearAutomaticAnimBlock = animateWhenKeyboardAppearAutomaticAnimBlock;
     [self registerObserver];
 }
 
+/**
+ * @brief restore the UI youself when keyboard disappear.
+ *
+ * if not configure this Block, automatically itself.
+ */
 - (void)setAnimateWhenKeyboardDisappearBlock:(animateWhenKeyboardDisappearBlock)animateWhenKeyboardDisappearBlock {
     _animateWhenKeyboardDisappearBlock = animateWhenKeyboardDisappearBlock;
     [self registerObserver];
@@ -222,6 +264,5 @@
     self.action = action;
     self.isSameAction = isSameAction;
 }
-
 
 @end

@@ -20,6 +20,11 @@ typedef enum {
     KeyboardActionHide
 }KeyboardAction;
 
+@protocol KeyboardUtilProtocol <NSObject>
+- (void)adaptiveViewHandleWithController:(UIViewController *)viewController adaptiveView:(UIView *)adaptiveView, ...NS_REQUIRES_NIL_TERMINATION;
+@end
+
+
 #pragma mark - KeyboardInfo(model)
 @interface KeyboardInfo : NSObject
 
@@ -30,32 +35,23 @@ typedef enum {
 @property (assign, nonatomic) KeyboardAction action;
 @property (assign, nonatomic) BOOL isSameAction;
 
-
 - (void)fillKeyboardInfoWithDuration:(CGFloat)duration frameBegin:(CGRect)frameBegin frameEnd:(CGRect)frameEnd heightIncrement:(CGFloat)heightIncrement action:(KeyboardAction)action isSameAction:(BOOL)isSameAction;
-
 @end
 
 
-
-
 #pragma mark - ZYKeyboardUtil
-@interface ZYKeyboardUtil : NSObject
+@interface ZYKeyboardUtil : NSObject<KeyboardUtilProtocol>
 
 //Block
 typedef void (^animateWhenKeyboardAppearBlock)(int appearPostIndex, CGRect keyboardRect, CGFloat keyboardHeight, CGFloat keyboardHeightIncrement);
 typedef void (^animateWhenKeyboardDisappearBlock)(CGFloat keyboardHeight);
 typedef void (^printKeyboardInfoBlock)(ZYKeyboardUtil *keyboardUtil, KeyboardInfo *keyboardInfo);
-typedef NSDictionary* (^animateWhenKeyboardAppearAutomaticAnimBlock)();
-
+typedef void (^animateWhenKeyboardAppearAutomaticAnimBlock)(ZYKeyboardUtil *keyboardUtil);
 
 - (void)setAnimateWhenKeyboardAppearBlock:(animateWhenKeyboardAppearBlock)animateWhenKeyboardAppearBlock;
-
 - (void)setAnimateWhenKeyboardAppearAutomaticAnimBlock:(animateWhenKeyboardAppearAutomaticAnimBlock)animateWhenKeyboardAppearAutomaticAnimBlock;
-
 - (void)setAnimateWhenKeyboardDisappearBlock:(animateWhenKeyboardDisappearBlock)animateWhenKeyboardDisappearBlock;
-
 - (void)setPrintKeyboardInfoBlock:(printKeyboardInfoBlock)printKeyboardInfoBlock;
-
 @end
 
 
