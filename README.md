@@ -1,11 +1,13 @@
 # ZYKeyboardUtil
 Util Handed all keyboard events with Block Conveniently  
 <br>
-![](https://img.shields.io/badge/pod-v0.3.1-blue.svg)
+![](https://img.shields.io/badge/pod-v0.4.1-blue.svg)
 ![](https://img.shields.io/badge/supporting-objectiveC-yellow.svg)
 ![](https://img.shields.io/badge/Advantage-Automation-red.svg)  
 <br>
--v0.2.1更新全自动处理键盘遮盖事件（需配置animateWhenKeyboardAppearAutomaticAnimBlock）,具体使用参照Demo
+-0.4.1支持一个页面多个输入控件处理(全自动处理键盘升降遮挡输入控件问题)(仅需配置animateWhenKeyboardAppearAutomaticAnimBlock)  
+-0.3.1更新自动处理键盘收起时对界面的还原(需与全自动升起处理同时使用，无需配置animateWhenKeyboardDisappearBlock)  
+-0.2.1更新全自动处理键盘遮盖事件（需配置animateWhenKeyboardAppearAutomaticAnimBlock）,具体使用参照Demo  
 
 <br>
 #**Features：**
@@ -20,15 +22,55 @@ ZYKeyboardUtil 通过对每次键盘展开时的增量heightIncrement作处理 �
 ![](https://raw.githubusercontent.com/liuzhiyi1992/ZYKeyboardUtil/master/ZYKeyboardUtil/DisplayFile/keyboardUtil.gif)
 
 <br>
-#**explain：**
-#####写在前面：
+
+#**CocoaPods：**  
+```pod 'ZYKeyboardUtil', '~> 0.4.1'```  
+
+<br>
+
+#**Usage：**  
+```objc
+self.keyboardUtil = [[ZYKeyboardUtil alloc] init];
+```  
+创建一个ZYKeyboard对象，为了让其生存在整个页面实现功能的时间段内，让你的controller持有他吧。
+
+```objc
+[_keyboardUtil setAnimateWhenKeyboardAppearBlock:^(int appearPostIndex, CGRect keyboardRect, CGFloat keyboardHeight, CGFloat keyboardHeightIncrement) {
+    //do something when keyboard appear
+}];
+
+[_keyboardUtil setAnimateWhenKeyboardDisappearBlock:^(CGFloat keyboardHeight) {
+    //do something when keyboard dismiss
+}];
+
+[_keyboardUtil setPrintKeyboardInfoBlock:^(ZYKeyboardUtil *keyboardUtil, KeyboardInfo *keyboardInfo) {
+    //you can get keyboardInfo hear when animation ended
+}];
+```  
+<br>
+#####0.4.1版本更新后，支持一个页面多个输入控件处理，全自动处理键盘升降遮挡输入控件问题，仅需要配置animateWhenKeyboardAppearAutomaticAnimBlock:(详细可fork Demo参考)    
+```objc
+self.keyboardUtil = [[ZYKeyboardUtil alloc] init];
+
+__weak ViewController *weakSelf = self;
+[_keyboardUtil setAnimateWhenKeyboardAppearAutomaticAnimBlock:^(ZYKeyboardUtil *keyboardUtil) {
+    [keyboardUtil adaptiveViewHandleWithController:weakSelf adaptiveView:weakSelf.inputViewOne, weakSelf.inputViewSecond, weakSelf.inputViewThird, weakSelf.inputViewFourth, nil];
+}];
+```
+
+#####0.2.1版本更新后，增加animateWhenKeyboardAppearAutomaticAnimBlock，在Block中return一个字典[含两个value: 你的inputView(key:ADAPTIVE_VIEW(宏),controller的view(key:CONTROLLER_VIEW(宏)))]即可，不同animateWhenKeyboardAppearBlock同时使用，否则后者优先。   例子：
+```objc
+[_keyboardUtil setAnimateWhenKeyboardAppearAutomaticAnimBlock:^NSDictionary *{
+    NSDictionary *adaptiveDict = [NSDictionary dictionaryWithObjectsAndKeys:weakSelf.mainTextField, ADAPTIVE_VIEW, weakSelf.view, CONTROLLER_VIEW, nil];
+    return adaptiveDict;
+}];
+```  
+
+#**explain：**  
 ZYKeyboardUtil 通过lazy方式注册键盘通知监听者，核心工作围绕一个model和三个Block，内部类KeyboardInfo作为model存储着每次处理时所需的键盘信息。animateWhenKeyboardAppearBlock作键盘展示时的处理，animateWhenKeyboardDisappearBlock作键盘收起时的处理，而printKeyboardInfoBlock用作在必要时输出键盘信息。AppearBlock和DisappearBlock统一做了UIViewAnimation，使用时只需要编写需要的界面变化即可。
   
 <br>
-#**CocoaPods：**  
-```pod 'ZYKeyboardUtil', '~> 0.3.1'```  
 
-<br>
 ###Class：
 ####-KeyboardInfo:
 **property：**  
@@ -58,34 +100,7 @@ ZYKeyboardUtil 通过lazy方式注册键盘通知监听者，核心工作围绕�
 - setPrintKeyboardInfoBlock:    
 - setAnimateWhenKeyboardAppearBlockAutomaticAnim:  
 
-<br>  
-#**Usage：**  
-```objc
-self.keyboardUtil = [[ZYKeyboardUtil alloc] init];
-```  
-创建一个ZYKeyboard对象，为了让其生存在整个页面实现功能的时间段内，让你的controller持有他吧。
-
-```objc
-[_keyboardUtil setAnimateWhenKeyboardAppearBlock:^(int appearPostIndex, CGRect keyboardRect, CGFloat keyboardHeight, CGFloat keyboardHeightIncrement) {
-    //do something when keyboard appear
-}];
-
-[_keyboardUtil setAnimateWhenKeyboardDisappearBlock:^(CGFloat keyboardHeight) {
-    //do something when keyboard dismiss
-}];
-
-[_keyboardUtil setPrintKeyboardInfoBlock:^(ZYKeyboardUtil *keyboardUtil, KeyboardInfo *keyboardInfo) {
-    //you can get keyboardInfo hear when animation ended
-}];
-```  
 <br>
-#####0.2.1版本更新后，增加animateWhenKeyboardAppearAutomaticAnimBlock，在Block中return一个字典[含两个value: 你的inputView(key:ADAPTIVE_VIEW(宏),controller的view(key:CONTROLLER_VIEW(宏)))]即可，不同animateWhenKeyboardAppearBlock同时使用，否则后者优先。   例子：
-```objc
-[_keyboardUtil setAnimateWhenKeyboardAppearAutomaticAnimBlock:^NSDictionary *{
-    NSDictionary *adaptiveDict = [NSDictionary dictionaryWithObjectsAndKeys:weakSelf.mainTextField, ADAPTIVE_VIEW, weakSelf.view, CONTROLLER_VIEW, nil];
-    return adaptiveDict;
-}];
-```
 
 That all, thanks。
 <br>
