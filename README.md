@@ -12,6 +12,8 @@ Util Handed all keyboard events with Block Conveniently
 <img src="https://img.shields.io/badge/pod-v0.4.1-blue.svg" />
 <img src="https://img.shields.io/badge/supporting-objectiveC-yellow.svg" />
 <img src="https://img.shields.io/badge/Advantage-Automation-red.svg" />
+<img src="https://img.shields.io/badge/Demo-contain-9600cd.svg" />
+
 </p>
 <br>
 -0.4.1支持一个页面多个输入控件处理(全自动处理键盘升降遮挡输入控件问题)  
