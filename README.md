@@ -16,15 +16,15 @@ Util Handed all keyboard events with Block Conveniently
 
 </p>
 <br>
+<br>
 -0.4.1支持一个页面多个输入控件处理(全自动处理键盘升降遮挡输入控件问题)  
 (仅需配置animateWhenKeyboardAppearAutomaticAnimBlock)  
 -0.3.1更新自动处理键盘收起时对界面的还原(需与全自动升起处理同时使用，  
 无需配置animateWhenKeyboardDisappearBlock)  
--0.2.1更新全自动处理键盘遮盖事件(需配置animateWhenKeyboardAppearAutomaticAnimBlock),具体使用参照Demo  
-
+-0.2.1更新全自动处理键盘遮盖事件(需配置animateWhenKeyboardAppearAutomaticAnimBlock),具体使用参照Demo
 <br>
 #**Features：**
-第三方键盘分次弹出问题：
+第三方键盘分次弹出问题：  
 ZYKeyboardUtil 通过对每次键盘展开时的增量heightIncrement作处理 应对 第三方键盘 分次弹出的问题
 
 ![](https://raw.githubusercontent.com/liuzhiyi1992/ZYKeyboardUtil/master/ZYKeyboardUtil/DisplayFile/demo_1.jpg)
@@ -35,6 +35,10 @@ ZYKeyboardUtil 通过对每次键盘展开时的增量heightIncrement作处理 �
 
 ![](https://raw.githubusercontent.com/liuzhiyi1992/ZYKeyboardUtil/master/ZYKeyboardUtil/DisplayFile/keyboardUtil.gif)
 
+<br>
+
+一个页面内多个输入控件处理：  
+![](https://raw.githubusercontent.com/liuzhiyi1992/MyStore/master/ZYKeyboardUtil/ZYKeyboardUtil%E5%A4%9A%E4%B8%AA%E8%BE%93%E5%85%A5%E6%8E%A7%E4%BB%B6.gif)
 <br>
 
 #**CocoaPods：**  
