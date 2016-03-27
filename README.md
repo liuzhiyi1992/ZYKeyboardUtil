@@ -1,9 +1,10 @@
-# ZYKeyboardUtil
+<center># ZYKeyboardUtil
 Util Handed all keyboard events with Block Conveniently  
+只需要一个Block，全自动处理任何多层嵌套复杂界面 因键盘升降 造成的输入控件遮挡问题。
 <br>
 ![](https://img.shields.io/badge/pod-v0.4.1-blue.svg)
 ![](https://img.shields.io/badge/supporting-objectiveC-yellow.svg)
-![](https://img.shields.io/badge/Advantage-Automation-red.svg)  
+![](https://img.shields.io/badge/Advantage-Automation-red.svg)  </center>
 <br>
 -0.4.1支持一个页面多个输入控件处理(全自动处理键盘升降遮挡输入控件问题)(仅需配置animateWhenKeyboardAppearAutomaticAnimBlock)  
 -0.3.1更新自动处理键盘收起时对界面的还原(需与全自动升起处理同时使用，无需配置animateWhenKeyboardDisappearBlock)  
@@ -29,11 +30,21 @@ ZYKeyboardUtil 通过对每次键盘展开时的增量heightIncrement作处理 �
 <br>
 
 #**Usage：**  
+创建一个ZYKeyboard对象，为了让其生存在整个页面实现功能的时间段内，让你的controller持有他吧。
 ```objc
 self.keyboardUtil = [[ZYKeyboardUtil alloc] init];
 ```  
-创建一个ZYKeyboard对象，为了让其生存在整个页面实现功能的时间段内，让你的controller持有他吧。
+配置animateWhenKeyboardAppearAutomaticAnimBlock，即可全自动处理键盘升降遮挡输入控件问题，且控件resignFirstResponder后自动还原。  
+只需在Block里利用参数keyboardUtil调用adaptiveViewHandleWithController:adaptiveView:，第一个参数为当前页面controller，第二个参数接收一个可变参数，为当前页面内的单个/多个输入控件或者包裹输入控件的View。
+```objc
+__weak ViewController *weakSelf = self;
+[_keyboardUtil setAnimateWhenKeyboardAppearAutomaticAnimBlock:^(ZYKeyboardUtil *keyboardUtil) {
+    [keyboardUtil adaptiveViewHandleWithController:weakSelf adaptiveView:weakSelf.inputViewOne, weakSelf.inputViewSecond, weakSelf.inputViewThird, weakSelf.inputViewFourth, nil];
+}];
+```  
 
+**Attach：**  
+另外提供自定义处理键盘升/降遮挡输入控件处理(自定义处理方案优先级高于自动处理方案)：
 ```objc
 [_keyboardUtil setAnimateWhenKeyboardAppearBlock:^(int appearPostIndex, CGRect keyboardRect, CGFloat keyboardHeight, CGFloat keyboardHeightIncrement) {
     //do something when keyboard appear
@@ -48,26 +59,10 @@ self.keyboardUtil = [[ZYKeyboardUtil alloc] init];
 }];
 ```  
 <br>
-#####0.4.1版本更新后，支持一个页面多个输入控件处理，全自动处理键盘升降遮挡输入控件问题，仅需要配置animateWhenKeyboardAppearAutomaticAnimBlock:(详细可fork Demo参考)    
-```objc
-self.keyboardUtil = [[ZYKeyboardUtil alloc] init];
 
-__weak ViewController *weakSelf = self;
-[_keyboardUtil setAnimateWhenKeyboardAppearAutomaticAnimBlock:^(ZYKeyboardUtil *keyboardUtil) {
-    [keyboardUtil adaptiveViewHandleWithController:weakSelf adaptiveView:weakSelf.inputViewOne, weakSelf.inputViewSecond, weakSelf.inputViewThird, weakSelf.inputViewFourth, nil];
-}];
-```
-
-#####0.2.1版本更新后，增加animateWhenKeyboardAppearAutomaticAnimBlock，在Block中return一个字典[含两个value: 你的inputView(key:ADAPTIVE_VIEW(宏),controller的view(key:CONTROLLER_VIEW(宏)))]即可，不同animateWhenKeyboardAppearBlock同时使用，否则后者优先。   例子：
-```objc
-[_keyboardUtil setAnimateWhenKeyboardAppearAutomaticAnimBlock:^NSDictionary *{
-    NSDictionary *adaptiveDict = [NSDictionary dictionaryWithObjectsAndKeys:weakSelf.mainTextField, ADAPTIVE_VIEW, weakSelf.view, CONTROLLER_VIEW, nil];
-    return adaptiveDict;
-}];
-```  
 
 #**explain：**  
-ZYKeyboardUtil 通过lazy方式注册键盘通知监听者，核心工作围绕一个model和三个Block，内部类KeyboardInfo作为model存储着每次处理时所需的键盘信息。animateWhenKeyboardAppearBlock作键盘展示时的处理，animateWhenKeyboardDisappearBlock作键盘收起时的处理，而printKeyboardInfoBlock用作在必要时输出键盘信息。AppearBlock和DisappearBlock统一做了UIViewAnimation，使用时只需要编写需要的界面变化即可。
+ZYKeyboardUtil 通过lazy方式注册键盘通知监听者，核心工作围绕一个model和四个Block(一个主功能Block和三个附加Block)，内部类KeyboardInfo作为model存储着每次处理时所需的键盘信息。animateWhenKeyboardAppearAutomaticAnimBlock作全自动处理，animateWhenKeyboardAppearBlock作键盘展示时的处理，animateWhenKeyboardDisappearBlock作键盘收起时的处理，而printKeyboardInfoBlock用作在必要时输出键盘信息。AppearBlock和DisappearBlock统一做了UIViewAnimation，自定义处理事件时只需要编写需要的界面变化即可。
   
 <br>
 
@@ -93,12 +88,13 @@ ZYKeyboardUtil 通过lazy方式注册键盘通知监听者，核心工作围绕�
 - animateWhenKeyboardAppearBlock：弹出Block  
 - animateWhenKeyboardDisappearBlock：收起Block  
 - printKeyboardInfoBlock：输出键盘信息Block    
-- animateWhenKeyboardAppearBlockAutomaticAnim：自动处理键盘遮盖事件Block（需提供输入view和controllerView）  
+- animateWhenKeyboardAppearBlockAutomaticAnim：全自动处理键盘遮盖事件Block   
 **func：**  
 - setAnimateWhenKeyboardAppearBlock:    
 - setAnimateWhenKeyboardDisappearBlock:  
 - setPrintKeyboardInfoBlock:    
 - setAnimateWhenKeyboardAppearBlockAutomaticAnim:  
+- setAnimateWhenKeyboardAppearAutomaticAnimBlock:  
 
 <br>
 
