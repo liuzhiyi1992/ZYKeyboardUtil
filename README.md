@@ -21,8 +21,9 @@ Util Handed all keyboard events with Block Conveniently
 (仅需配置animateWhenKeyboardAppearAutomaticAnimBlock)  
 - 0.3.1更新自动处理键盘收起时对界面的还原(需与全自动升起处理同时使用，  
 无需配置animateWhenKeyboardDisappearBlock)  
-- 0.2.1更新全自动处理键盘遮盖事件(需配置animateWhenKeyboardAppearAutomaticAnimBlock),具体使用参照Demo
+- 0.2.1更新全自动处理键盘遮盖事件(需配置animateWhenKeyboardAppearAutomaticAnimBlock),具体使用参照Demo  
 <br>
+
 #**Features：**
 **第三方键盘分次弹出问题：**  
 ZYKeyboardUtil 通过对每次键盘展开时的增量heightIncrement作处理 应对 第三方键盘 分次弹出的问题
