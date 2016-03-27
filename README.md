@@ -1,9 +1,11 @@
 <h1 align="center">
 ZYKeyboardUtil  
-<h5 align="center">
+<h5 align="center", style="color, #666">
 Util Handed all keyboard events with Block Conveniently    
 <br>
 只需要一个Block，全自动处理任何多层嵌套复杂界面 因键盘升降 造成的输入控件遮挡问题。  
+<br>
+第三方键盘分次弹出问题
 </h5>
 </h1>
 <p align="center">
@@ -12,12 +14,15 @@ Util Handed all keyboard events with Block Conveniently
 <img src="https://img.shields.io/badge/Advantage-Automation-red.svg" />
 </p>
 <br>
--0.4.1支持一个页面多个输入控件处理(全自动处理键盘升降遮挡输入控件问题)(仅需配置animateWhenKeyboardAppearAutomaticAnimBlock)  
--0.3.1更新自动处理键盘收起时对界面的还原(需与全自动升起处理同时使用，无需配置animateWhenKeyboardDisappearBlock)  
--0.2.1更新全自动处理键盘遮盖事件（需配置animateWhenKeyboardAppearAutomaticAnimBlock）,具体使用参照Demo  
+-0.4.1支持一个页面多个输入控件处理(全自动处理键盘升降遮挡输入控件问题)  
+(仅需配置animateWhenKeyboardAppearAutomaticAnimBlock)  
+-0.3.1更新自动处理键盘收起时对界面的还原(需与全自动升起处理同时使用，  
+无需配置animateWhenKeyboardDisappearBlock)  
+-0.2.1更新全自动处理键盘遮盖事件(需配置animateWhenKeyboardAppearAutomaticAnimBlock),具体使用参照Demo  
 
 <br>
 #**Features：**
+第三方键盘分次弹出问题：
 ZYKeyboardUtil 通过对每次键盘展开时的增量heightIncrement作处理 应对 第三方键盘 分次弹出的问题
 
 ![](https://raw.githubusercontent.com/liuzhiyi1992/ZYKeyboardUtil/master/ZYKeyboardUtil/DisplayFile/demo_1.jpg)
