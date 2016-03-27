@@ -1,12 +1,12 @@
 <p align="center">
 # ZYKeyboardUtil
 Util Handed all keyboard events with Block Conveniently  
-只需要一个Block，全自动处理任何多层嵌套复杂界面 因键盘升降 造成的输入控件遮挡问题。
+只需要一个Block，全自动处理任何多层嵌套复杂界面 因键盘升降 造成的输入控件遮挡问题。  
+</p>
 <br>
 ![](https://img.shields.io/badge/pod-v0.4.1-blue.svg)
 ![](https://img.shields.io/badge/supporting-objectiveC-yellow.svg)
-![](https://img.shields.io/badge/Advantage-Automation-red.svg)  
-</p>
+![](https://img.shields.io/badge/Advantage-Automation-red.svg)   
 <br>
 -0.4.1支持一个页面多个输入控件处理(全自动处理键盘升降遮挡输入控件问题)(仅需配置animateWhenKeyboardAppearAutomaticAnimBlock)  
 -0.3.1更新自动处理键盘收起时对界面的还原(需与全自动升起处理同时使用，无需配置animateWhenKeyboardDisappearBlock)  
