@@ -7,9 +7,11 @@ Util Handed all keyboard events with Block Conveniently
 </h5>
 </h1>
 <br>
+<p align="center">
 ![](https://img.shields.io/badge/pod-v0.4.1-blue.svg)
 ![](https://img.shields.io/badge/supporting-objectiveC-yellow.svg)
 ![](https://img.shields.io/badge/Advantage-Automation-red.svg)   
+</p>
 <br>
 -0.4.1支持一个页面多个输入控件处理(全自动处理键盘升降遮挡输入控件问题)(仅需配置animateWhenKeyboardAppearAutomaticAnimBlock)  
 -0.3.1更新自动处理键盘收起时对界面的还原(需与全自动升起处理同时使用，无需配置animateWhenKeyboardDisappearBlock)  
