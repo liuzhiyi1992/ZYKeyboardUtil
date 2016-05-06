@@ -18,6 +18,7 @@ Util Handed all keyboard events with Block Conveniently
 </p>
 <br>
 <br>
+- 0.5.1处理 输入控件在多层嵌套view内 有时不能找到firstResponder 的问题
 - 0.4.1支持一个页面多个输入控件处理(全自动处理键盘升降遮挡输入控件问题)  
 (仅需配置animateWhenKeyboardAppearAutomaticAnimBlock)  
 - 0.3.1更新自动处理键盘收起时对界面的还原(需与全自动升起处理同时使用，  
