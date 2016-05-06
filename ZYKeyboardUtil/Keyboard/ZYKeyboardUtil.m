@@ -10,6 +10,7 @@
 
 #define MARGIN_KEYBOARD_DEFAULT 10
 
+static UIView *FIRST_RESPONDER;
 
 @interface ZYKeyboardUtil()
 
@@ -62,6 +63,7 @@
     va_end(var_list);
     
     for (UIView *adaptiveViews in adaptiveViewList) {
+        FIRST_RESPONDER = nil;
         UIView *firstResponderView = [self recursionTraverseFindFirstResponderIn:adaptiveViews];
         if (nil != firstResponderView) {
             [self fitKeyboardAutomatically:firstResponderView controllerView:viewController.view keyboardRect:_keyboardInfo.frameEnd];
@@ -75,11 +77,12 @@
 - (UIView *)recursionTraverseFindFirstResponderIn:(UIView *)view {
     for (UIView *subView in view.subviews) {
         if ([subView isFirstResponder]) {
-            return subView;
+            FIRST_RESPONDER = subView;
+            return FIRST_RESPONDER;
         }
         [self recursionTraverseFindFirstResponderIn:subView];
     }
-    return nil;
+    return FIRST_RESPONDER;
 }
 
 - (void)fitKeyboardAutomatically:(UIView *)adaptiveView controllerView:(UIView *)controllerView keyboardRect:(CGRect)keyboardRect {
@@ -266,6 +269,11 @@
 }
 
 @end
+
+
+
+
+
 
 //ZYKeyboardUtil is available under the MIT license.
 //Please visit https://github.com/liuzhiyi1992/ZYKeyboardUtil for details.
