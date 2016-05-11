@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "ZYKeyboardUtil"
-  s.version      = "0.4.1"
+  s.version      = "0.5.1"
   s.summary      = "Util Handed all keyboard events with Block Conveniently."
 
   # This description is used to generate tags and improve search results.
@@ -80,7 +80,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/liuzhiyi1992/ZYKeyboardUtil.git", :tag => "0.4.1" }
+  s.source       = { :git => "https://github.com/liuzhiyi1992/ZYKeyboardUtil.git", :tag => "0.5.1" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
