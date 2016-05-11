@@ -9,7 +9,7 @@ Util Handed all keyboard events with Block Conveniently
 </h5>
 </h1>
 <p align="center">
-<img src="https://img.shields.io/badge/pod-v0.4.1-blue.svg" />
+<img src="https://img.shields.io/badge/pod-v0.5.1-blue.svg" />
 <img src="https://img.shields.io/badge/supporting-objectiveC-yellow.svg" />
 <img src="https://img.shields.io/badge/Advantage-Automation-red.svg" />
 <img src="https://img.shields.io/badge/Demo-contain-9600cd.svg" />
@@ -46,7 +46,7 @@ UITextField嵌套两层UIView例子演示：
 <br>
 
 #**CocoaPods：**  
-```pod 'ZYKeyboardUtil', '~> 0.4.1'```  
+```pod 'ZYKeyboardUtil', '~> 0.5.1'```  
 
 <br>
 
