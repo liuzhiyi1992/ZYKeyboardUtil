@@ -46,6 +46,10 @@ UITextField嵌套两层UIView例子演示：
 ![](https://raw.githubusercontent.com/liuzhiyi1992/MyStore/master/ZYKeyboardUtil/ZYKeyboardUtil%E5%A4%9A%E4%B8%AA%E8%BE%93%E5%85%A5%E6%8E%A7%E4%BB%B6.gif)
 <br>
 
+**UITextView处理：**  
+![](https://raw.githubusercontent.com/liuzhiyi1992/MyStore/master/ZYKeyboardUtil/ZYKeyboardUtil_TextView%E5%A4%84%E7%90%86%E6%BC%94%E7%A4%BA.gif)
+<br>
+
 #**CocoaPods：**  
 ```pod 'ZYKeyboardUtil', '~> 0.6.1'```  
 
