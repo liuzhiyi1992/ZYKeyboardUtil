@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "ZYKeyboardUtil"
-  s.version      = "0.5.1"
+  s.version      = "0.6.1"
   s.summary      = "Util Handed all keyboard events with Block Conveniently."
 
   # This description is used to generate tags and improve search results.
@@ -25,7 +25,7 @@ Pod::Spec.new do |s|
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
   s.description  = <<-DESC
-                  Util Handed all keyboard events with Block Conveniently.The important role is animateWhenKeyboardAppearBlock & animateWhenKeyboardDisappearBlock, and you can use animateWhenKeyboardAppearBlockAutomaticAnim let it handle the event what keyboard cover you inputView automatically. all in the demo. thx.
+                  Util Handed all keyboard events with Block Conveniently.The important role is AnimateWhenKeyboardAppearAutomaticAnimBlock, you can let it handle the event what keyboard cover you inputView automatically. all in the demo. thx.
                    DESC
 
   s.homepage     = "https://github.com/liuzhiyi1992/ZYKeyboardUtil"
@@ -80,7 +80,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/liuzhiyi1992/ZYKeyboardUtil.git", :tag => "0.5.1" }
+  s.source       = { :git => "https://github.com/liuzhiyi1992/ZYKeyboardUtil.git", :tag => "0.6.1" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
