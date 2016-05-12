@@ -10,6 +10,14 @@
 
 #define MARGIN_KEYBOARD_DEFAULT 10
 
+#define textView_no_anim_begin if ([_adaptiveView isKindOfClass:[UITextView class]]) {\
+                                [CATransaction begin];\
+                                [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];\
+                                }
+#define textView_no_anim_end if ([_adaptiveView isKindOfClass:[UITextView class]]) {\
+                                [CATransaction commit];\
+                                }
+
 static UIView *FIRST_RESPONDER;
 
 @interface ZYKeyboardUtil()
@@ -19,6 +27,7 @@ static UIView *FIRST_RESPONDER;
 @property (strong, nonatomic) KeyboardInfo *keyboardInfo;
 @property (assign, nonatomic) BOOL haveRegisterObserver;
 @property (weak, nonatomic) UIViewController *adaptiveController;
+@property (weak, nonatomic) UIView *adaptiveView;
 
 @property (copy, nonatomic) animateWhenKeyboardAppearBlock animateWhenKeyboardAppearBlock;
 @property (copy, nonatomic) animateWhenKeyboardAppearAutomaticAnimBlock animateWhenKeyboardAppearAutomaticAnimBlock;
@@ -66,6 +75,7 @@ static UIView *FIRST_RESPONDER;
         FIRST_RESPONDER = nil;
         UIView *firstResponderView = [self recursionTraverseFindFirstResponderIn:adaptiveViews];
         if (nil != firstResponderView) {
+            self.adaptiveView = firstResponderView;
             [self fitKeyboardAutomatically:firstResponderView controllerView:viewController.view keyboardRect:_keyboardInfo.frameEnd];
             self.adaptiveController = viewController;
             break;
@@ -75,12 +85,16 @@ static UIView *FIRST_RESPONDER;
 
 //递归视图
 - (UIView *)recursionTraverseFindFirstResponderIn:(UIView *)view {
-    for (UIView *subView in view.subviews) {
-        if ([subView isFirstResponder]) {
-            FIRST_RESPONDER = subView;
-            return FIRST_RESPONDER;
+    if ([view isFirstResponder]) {
+        FIRST_RESPONDER = view;
+    } else {
+        for (UIView *subView in view.subviews) {
+            if ([subView isFirstResponder]) {
+                FIRST_RESPONDER = subView;
+                return FIRST_RESPONDER;
+            }
+            [self recursionTraverseFindFirstResponderIn:subView];
         }
-        [self recursionTraverseFindFirstResponderIn:subView];
     }
     return FIRST_RESPONDER;
 }
@@ -98,6 +112,7 @@ static UIView *FIRST_RESPONDER;
 }
 
 - (void)restoreKeyboardAutomatically {
+    [self textViewHandle];
     CGRect tempFrame = self.adaptiveController.view.frame;
     if (self.adaptiveController.navigationController == nil || self.adaptiveController.navigationController.navigationBar.hidden == YES) {
         tempFrame.origin.y = 0.f;
@@ -105,6 +120,13 @@ static UIView *FIRST_RESPONDER;
     } else {
         tempFrame.origin.y = 64.f;
         self.adaptiveController.view.frame = tempFrame;
+    }
+}
+
+- (void)textViewHandle {
+    //还原时 textView可能会出现offset错乱现象
+    if ([_adaptiveView isKindOfClass:[UITextView class]]) {
+        [(UITextView *)_adaptiveView setContentOffset:CGPointMake(0, 0)];
     }
 }
 
@@ -140,6 +162,7 @@ static UIView *FIRST_RESPONDER;
                 default:
                     break;
             }
+            [CATransaction commit];
         }completion:^(BOOL finished) {
             if(self.printKeyboardInfoBlock != nil && self.keyboardInfo != nil) {
                 self.printKeyboardInfoBlock(self, keyboardInfo);
