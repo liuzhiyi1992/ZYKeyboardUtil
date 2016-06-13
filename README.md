@@ -9,7 +9,7 @@ Util Handed all keyboard events with Block Conveniently
 </h5>
 </h1>
 <p align="center">
-<img src="https://img.shields.io/badge/pod-v0.5.1-blue.svg" />
+<img src="https://img.shields.io/badge/pod-v0.6.1-blue.svg" />
 <img src="https://img.shields.io/badge/supporting-objectiveC-yellow.svg" />
 <img src="https://img.shields.io/badge/Advantage-Automation-red.svg" />
 <img src="https://img.shields.io/badge/Demo-contain-9600cd.svg" />
@@ -18,6 +18,7 @@ Util Handed all keyboard events with Block Conveniently
 </p>
 <br>
 <br>
+- 0.6.1优化 对UITextView的处理，优化 部分方法实现
 - 0.5.1处理 输入控件在多层嵌套view内 有时不能找到firstResponder 的问题
 - 0.4.1支持一个页面多个输入控件处理(全自动处理键盘升降遮挡输入控件问题)  
 (仅需配置animateWhenKeyboardAppearAutomaticAnimBlock)  
@@ -44,9 +45,15 @@ UITextField嵌套两层UIView例子演示：
 **一个页面内多个输入控件处理：**  
 ![](https://raw.githubusercontent.com/liuzhiyi1992/MyStore/master/ZYKeyboardUtil/ZYKeyboardUtil%E5%A4%9A%E4%B8%AA%E8%BE%93%E5%85%A5%E6%8E%A7%E4%BB%B6.gif)
 <br>
+<br>
+
+**UITextView处理：**  
+<br>
+![](https://raw.githubusercontent.com/liuzhiyi1992/MyStore/master/ZYKeyboardUtil/ZYKeyboardUtil_TextView%E5%A4%84%E7%90%86%E6%BC%94%E7%A4%BA.gif)
+<br>
 
 #**CocoaPods：**  
-```pod 'ZYKeyboardUtil', '~> 0.5.1'```  
+```pod 'ZYKeyboardUtil', '~> 0.6.1'```  
 
 <br>
 
