@@ -9,7 +9,7 @@ Util Handed all keyboard events with Block Conveniently
 </h5>
 </h1>
 <p align="center">
-<img src="https://img.shields.io/badge/pod-v0.6.1-blue.svg" />
+<img src="https://img.shields.io/badge/pod-v1.0.1-blue.svg" />
 <img src="https://img.shields.io/badge/supporting-objectiveC-yellow.svg" />
 <img src="https://img.shields.io/badge/Advantage-Automation-red.svg" />
 <img src="https://img.shields.io/badge/Demo-contain-9600cd.svg" />
@@ -18,6 +18,8 @@ Util Handed all keyboard events with Block Conveniently
 </p>
 <br>
 <br>
+- 1.0.1处理 同一页面多个输入控件时不收键盘而直接转移第一响应者到另一被半遮盖输入控件 界面没有适配动作问题（在当前输入控件注
+销第一响应者时，会重复再触发一次与上次相同的遮盖计算）
 - 0.6.1优化 对UITextView的处理，优化 部分方法实现
 - 0.5.1处理 输入控件在多层嵌套view内 有时不能找到firstResponder 的问题
 - 0.4.1支持一个页面多个输入控件处理(全自动处理键盘升降遮挡输入控件问题)  
