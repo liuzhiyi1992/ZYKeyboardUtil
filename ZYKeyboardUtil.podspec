@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "ZYKeyboardUtil"
-  s.version      = "0.6.1"
+  s.version      = "1.0.1"
   s.summary      = "Util Handed all keyboard events with Block Conveniently."
 
   # This description is used to generate tags and improve search results.
