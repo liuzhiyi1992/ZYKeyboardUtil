@@ -20,7 +20,7 @@
 
 static UIView *FIRST_RESPONDER;
 
-@interface ZYKeyboardUtil()
+@interface ZYKeyboardUtil() <UITextFieldDelegate, UITextViewDelegate>
 
 @property (assign, nonatomic) BOOL keyboardObserveEnabled;
 @property (assign, nonatomic) int appearPostIndex;
@@ -96,6 +96,13 @@ static UIView *FIRST_RESPONDER;
             [self recursionTraverseFindFirstResponderIn:subView];
         }
     }
+    if (nil != FIRST_RESPONDER) {
+        if ([FIRST_RESPONDER isKindOfClass:[UITextView class]]) {
+            ((UITextView *)FIRST_RESPONDER).delegate = self;
+        } else if ([FIRST_RESPONDER isKindOfClass:[UITextField class]]) {
+            ((UITextField *)FIRST_RESPONDER).delegate = self;
+        }
+    }
     return FIRST_RESPONDER;
 }
 
@@ -136,9 +143,7 @@ static UIView *FIRST_RESPONDER;
     if([UIApplication sharedApplication].applicationState == UIApplicationStateBackground) {
         return;
     }
-    
     _keyboardInfo = keyboardInfo;
-    
     if(!keyboardInfo.isSameAction || (keyboardInfo.heightIncrement != 0)) {
         
         [UIView animateWithDuration:keyboardInfo.animationDuration animations:^{
@@ -169,6 +174,23 @@ static UIView *FIRST_RESPONDER;
             }
         }];
     }
+}
+
+#pragma mark - delegate
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    [textField resignFirstResponder];
+    [self triggerAction];
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView {
+    [textView resignFirstResponder];
+    [self triggerAction];
+}
+
+- (void)triggerAction {
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.keyboardInfo = _keyboardInfo;
+    });
 }
 
 #pragma mark - 重写Block set方法，懒加载方式注册观察者
@@ -212,11 +234,9 @@ static UIView *FIRST_RESPONDER;
     [self handleKeyboard:notification keyboardAction:KeyboardActionShow];
 }
 
-//UIKeyboardWillChangeFrameNotification 可解决ios9 对于 第三方键盘 UIKeyboardWillShowNotification漏发的问题
 - (void)keyboardWillChangeFrame:(NSNotification *)notification {
-    
     if(self.keyboardInfo.action == KeyboardActionShow){
-//        [self handleKeyboard:notification keyboardAction:KeyboardActionShow];
+        //[self handleKeyboard:notification keyboardAction:KeyboardActionShow];
     }
 }
 
@@ -272,6 +292,7 @@ static UIView *FIRST_RESPONDER;
 }
 
 @end
+
 
 
 
