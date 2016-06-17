@@ -55,7 +55,7 @@ UITextField嵌套两层UIView例子演示：
 <br>
 
 #**CocoaPods：**  
-```pod 'ZYKeyboardUtil', '~> 0.6.1'```  
+```pod 'ZYKeyboardUtil', '~> 1.0.2'```  
 
 <br>
 
