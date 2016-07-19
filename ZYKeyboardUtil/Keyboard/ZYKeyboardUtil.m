@@ -20,7 +20,7 @@
 
 static UIView *FIRST_RESPONDER;
 
-@interface ZYKeyboardUtil() <UITextFieldDelegate, UITextViewDelegate>
+@interface ZYKeyboardUtil()
 
 @property (assign, nonatomic) BOOL keyboardObserveEnabled;
 @property (assign, nonatomic) int appearPostIndex;
@@ -96,13 +96,6 @@ static UIView *FIRST_RESPONDER;
             [self recursionTraverseFindFirstResponderIn:subView];
         }
     }
-    if (nil != FIRST_RESPONDER) {
-        if ([FIRST_RESPONDER isKindOfClass:[UITextView class]]) {
-            ((UITextView *)FIRST_RESPONDER).delegate = self;
-        } else if ([FIRST_RESPONDER isKindOfClass:[UITextField class]]) {
-            ((UITextField *)FIRST_RESPONDER).delegate = self;
-        }
-    }
     return FIRST_RESPONDER;
 }
 
@@ -174,17 +167,6 @@ static UIView *FIRST_RESPONDER;
             }
         }];
     }
-}
-
-#pragma mark - delegate
-- (void)textFieldDidEndEditing:(UITextField *)textField {
-    [textField resignFirstResponder];
-    [self triggerAction];
-}
-
-- (void)textViewDidEndEditing:(UITextView *)textView {
-    [textView resignFirstResponder];
-    [self triggerAction];
 }
 
 - (void)triggerAction {
