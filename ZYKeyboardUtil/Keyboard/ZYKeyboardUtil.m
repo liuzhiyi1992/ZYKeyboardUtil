@@ -68,13 +68,45 @@ static UIView *FIRST_RESPONDER;
     }
     va_end(var_list);
     
+    self.adaptiveController = viewController;
     for (UIView *adaptiveViews in adaptiveViewList) {
         FIRST_RESPONDER = nil;
         UIView *firstResponderView = [self recursionTraverseFindFirstResponderIn:adaptiveViews];
         if (nil != firstResponderView) {
             self.adaptiveView = firstResponderView;
             [self fitKeyboardAutomatically:firstResponderView controllerView:viewController.view keyboardRect:_keyboardInfo.frameEnd];
-            self.adaptiveController = viewController;
+            break;
+        }
+    }
+}
+
+- (void)adaptiveViewHandleWithAdaptiveView:(UIView *)adaptiveView, ...NS_REQUIRES_NIL_TERMINATION {
+    NSMutableArray *adaptiveViewList = [NSMutableArray array];
+    [adaptiveViewList addObject:adaptiveView];
+    
+    va_list var_list;
+    va_start(var_list, adaptiveView);
+    UIView *view;
+    while ((view = va_arg(var_list, UIView *))) {
+        [adaptiveViewList addObject:view];
+    }
+    va_end(var_list);
+    
+    UIViewController *adaptiveController;
+    [adaptiveView findControllerWithResultController:&adaptiveController];
+    if (adaptiveController) {
+        self.adaptiveController = adaptiveController;
+    } else {
+        NSLog(@"\nERROR: Can not find adaptiveView`s Controller");
+        return;
+    }
+    
+    for (UIView *adaptiveViews in adaptiveViewList) {
+        FIRST_RESPONDER = nil;
+        UIView *firstResponderView = [self recursionTraverseFindFirstResponderIn:adaptiveViews];
+        if (nil != firstResponderView) {
+            self.adaptiveView = firstResponderView;
+            [self fitKeyboardAutomatically:firstResponderView controllerView:adaptiveController.view keyboardRect:_keyboardInfo.frameEnd];
             break;
         }
     }
@@ -269,7 +301,6 @@ static UIView *FIRST_RESPONDER;
     keyboardInfo.action = action;
     keyboardInfo.isSameAction = isSameAction;
 }
-
 @end
 
 
@@ -282,7 +313,6 @@ static UIView *FIRST_RESPONDER;
 @end
 
 @implementation KeyboardInfo
-
 - (void)fillKeyboardInfoWithDuration:(CGFloat)duration frameBegin:(CGRect)frameBegin frameEnd:(CGRect)frameEnd heightIncrement:(CGFloat)heightIncrement action:(KeyboardAction)action isSameAction:(BOOL)isSameAction {
     self.animationDuration = duration;
     self.frameBegin = frameBegin;
@@ -291,8 +321,26 @@ static UIView *FIRST_RESPONDER;
     self.action = action;
     self.isSameAction = isSameAction;
 }
-
 @end
+
+
+#pragma mark - UIView+Utils
+@implementation UIView (Utils)
+- (void)findControllerWithResultController:(UIViewController **)resultController {
+    UIResponder *responder = [self nextResponder];
+    if (nil == responder) {
+        return;
+    }
+    if ([responder isKindOfClass:[UIViewController class]]) {
+        *resultController = (UIViewController *)responder;
+    } else if ([responder isKindOfClass:[UIView class]]) {
+        [(UIView *)responder findControllerWithResultController:resultController];
+    }
+}
+@end
+
+
+
 
 
 

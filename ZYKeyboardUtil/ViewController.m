@@ -12,14 +12,11 @@
 #define MARGIN_KEYBOARD 20
 
 @interface ViewController ()
-
 @property (strong, nonatomic) ZYKeyboardUtil *keyboardUtil;
 @property (weak, nonatomic) IBOutlet UITextField *mainTextField;
 @property (weak, nonatomic) IBOutlet UIView *inputViewBorderView;
-
 @property (weak, nonatomic) IBOutlet UITextField *secondTextField;
 @property (weak, nonatomic) IBOutlet UITextField *thirdTextField;
-
 @end
 
 @implementation ViewController
@@ -36,13 +33,18 @@
 
 - (void)configKeyBoardRespond {
      self.keyboardUtil = [[ZYKeyboardUtil alloc] init];
-    
     __weak ViewController *weakSelf = self;
     #pragma explain - 全自动键盘弹出/收起处理 (需调用keyboardUtil 的 adaptiveViewHandleWithController:adaptiveView:)
     #pragma explain - use animateWhenKeyboardAppearBlock, animateWhenKeyboardAppearAutomaticAnimBlock will be invalid.
     [_keyboardUtil setAnimateWhenKeyboardAppearAutomaticAnimBlock:^(ZYKeyboardUtil *keyboardUtil) {
         [keyboardUtil adaptiveViewHandleWithController:weakSelf adaptiveView:weakSelf.inputViewBorderView, weakSelf.secondTextField, weakSelf.thirdTextField, nil];
     }];
+    /*  or
+    [_keyboardUtil setAnimateWhenKeyboardAppearAutomaticAnimBlock:^(ZYKeyboardUtil *keyboardUtil) {
+        [keyboardUtil adaptiveViewHandleWithAdaptiveView:weakSelf.inputViewBorderView, weakSelf.secondTextField, weakSelf.thirdTextField, nil];
+    }];
+     */
+    
     
     #pragma explain - 自定义键盘弹出处理(如配置，全自动键盘处理则失效)
     #pragma explain - use animateWhenKeyboardAppearAutomaticAnimBlock, animateWhenKeyboardAppearBlock must be nil.

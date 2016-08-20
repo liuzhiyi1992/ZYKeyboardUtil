@@ -18,6 +18,7 @@ typedef enum {
 }KeyboardAction;
 
 @protocol KeyboardUtilProtocol <NSObject>
+- (void)adaptiveViewHandleWithAdaptiveView:(UIView *)adaptiveView, ...NS_REQUIRES_NIL_TERMINATION;
 - (void)adaptiveViewHandleWithController:(UIViewController *)viewController adaptiveView:(UIView *)adaptiveView, ...NS_REQUIRES_NIL_TERMINATION;
 @end
 
@@ -50,4 +51,9 @@ typedef void (^animateWhenKeyboardAppearAutomaticAnimBlock)(ZYKeyboardUtil *keyb
 - (void)setPrintKeyboardInfoBlock:(printKeyboardInfoBlock)printKeyboardInfoBlock;
 @end
 
+
+#pragma mark - UIView+Utils
+@interface UIView (Utils)
+- (void)findControllerWithResultController:(UIViewController **)resultController;
+@end
 
