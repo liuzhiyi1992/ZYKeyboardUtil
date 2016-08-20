@@ -10,18 +10,17 @@
 
 #define MARGIN_KEYBOARD_DEFAULT 10
 
-#define textView_no_anim_begin if ([_adaptiveView isKindOfClass:[UITextView class]]) {\
+#define TEXTVIEW_NO_ANIM_BEGIN if ([_adaptiveView isKindOfClass:[UITextView class]]) {\
                                 [CATransaction begin];\
                                 [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];\
                                 }
-#define textView_no_anim_end if ([_adaptiveView isKindOfClass:[UITextView class]]) {\
+#define TEXTVIEW_NO_ANIM_END if ([_adaptiveView isKindOfClass:[UITextView class]]) {\
                                 [CATransaction commit];\
                                 }
 
 static UIView *FIRST_RESPONDER;
 
 @interface ZYKeyboardUtil()
-
 @property (assign, nonatomic) BOOL keyboardObserveEnabled;
 @property (assign, nonatomic) int appearPostIndex;
 @property (strong, nonatomic) KeyboardInfo *keyboardInfo;
@@ -33,12 +32,10 @@ static UIView *FIRST_RESPONDER;
 @property (copy, nonatomic) animateWhenKeyboardAppearAutomaticAnimBlock animateWhenKeyboardAppearAutomaticAnimBlock;
 @property (copy, nonatomic) animateWhenKeyboardDisappearBlock animateWhenKeyboardDisappearBlock;
 @property (copy, nonatomic) printKeyboardInfoBlock printKeyboardInfoBlock;
-
 @end
 
 
 @implementation ZYKeyboardUtil
-
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
@@ -274,6 +271,7 @@ static UIView *FIRST_RESPONDER;
 }
 
 @end
+
 
 
 

@@ -24,7 +24,6 @@ typedef enum {
 
 #pragma mark - KeyboardInfo(model)
 @interface KeyboardInfo : NSObject
-
 @property (assign, nonatomic) CGFloat animationDuration;
 @property (assign, nonatomic) CGRect frameBegin;
 @property (assign, nonatomic) CGRect frameEnd;
