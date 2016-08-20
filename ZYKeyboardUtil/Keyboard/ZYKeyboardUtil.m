@@ -27,7 +27,6 @@ static UIView *FIRST_RESPONDER;
 @property (assign, nonatomic) BOOL haveRegisterObserver;
 @property (weak, nonatomic) UIViewController *adaptiveController;
 @property (weak, nonatomic) UIView *adaptiveView;
-
 @property (copy, nonatomic) animateWhenKeyboardAppearBlock animateWhenKeyboardAppearBlock;
 @property (copy, nonatomic) animateWhenKeyboardAppearAutomaticAnimBlock animateWhenKeyboardAppearAutomaticAnimBlock;
 @property (copy, nonatomic) animateWhenKeyboardDisappearBlock animateWhenKeyboardDisappearBlock;
@@ -45,14 +44,10 @@ static UIView *FIRST_RESPONDER;
     if (_haveRegisterObserver == YES) {
         return;
     }
-    
     self.haveRegisterObserver = YES;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
 }
 
@@ -130,7 +125,6 @@ static UIView *FIRST_RESPONDER;
 - (void)fitKeyboardAutomatically:(UIView *)adaptiveView controllerView:(UIView *)controllerView keyboardRect:(CGRect)keyboardRect {
     UIWindow *window = [[UIApplication sharedApplication] keyWindow];
     CGRect convertRect = [adaptiveView.superview convertRect:adaptiveView.frame toView:window];
-    
     if (CGRectGetMinY(keyboardRect) - MARGIN_KEYBOARD_DEFAULT < CGRectGetMaxY(convertRect)) {
         CGFloat signedDiff = CGRectGetMinY(keyboardRect) - CGRectGetMaxY(convertRect) - MARGIN_KEYBOARD_DEFAULT;
         //updateOriginY
