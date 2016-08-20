@@ -20,14 +20,11 @@
 @end
 
 @implementation ViewController
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.mainTextField.delegate = self;
     self.secondTextField.delegate = self;
     self.thirdTextField.delegate = self;
-    
     [self configKeyBoardRespond];
 }
 

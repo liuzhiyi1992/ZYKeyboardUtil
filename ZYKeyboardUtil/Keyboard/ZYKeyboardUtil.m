@@ -112,7 +112,6 @@ static UIView *FIRST_RESPONDER;
     }
 }
 
-//递归视图
 - (UIView *)recursionTraverseFindFirstResponderIn:(UIView *)view {
     if ([view isFirstResponder]) {
         FIRST_RESPONDER = view;
@@ -322,6 +321,9 @@ static UIView *FIRST_RESPONDER;
     self.isSameAction = isSameAction;
 }
 @end
+
+
+
 
 
 #pragma mark - UIView+Utils
