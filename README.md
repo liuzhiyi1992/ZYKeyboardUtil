@@ -74,7 +74,7 @@ __weak ViewController *weakSelf = self;
     [keyboardUtil adaptiveViewHandleWithController:weakSelf adaptiveView:weakSelf.inputViewOne, weakSelf.inputViewSecond, weakSelf.inputViewThird, weakSelf.inputViewFourth, nil];
 }];
 ```  
-or you can write like this convenient:(KeyboardUtil can find the controller itself)
+or you can write like this convenient: (KeyboardUtil can find the controller itself)
 ```objc
 __weak ViewController *weakSelf = self;
 [_keyboardUtil setAnimateWhenKeyboardAppearAutomaticAnimBlock:^(ZYKeyboardUtil *keyboardUtil) {
