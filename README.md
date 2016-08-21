@@ -74,6 +74,14 @@ __weak ViewController *weakSelf = self;
     [keyboardUtil adaptiveViewHandleWithController:weakSelf adaptiveView:weakSelf.inputViewOne, weakSelf.inputViewSecond, weakSelf.inputViewThird, weakSelf.inputViewFourth, nil];
 }];
 ```  
+or you can write like this convenient:(KeyboardUtil can find the controller itself)
+```objc
+__weak ViewController *weakSelf = self;
+[_keyboardUtil setAnimateWhenKeyboardAppearAutomaticAnimBlock:^(ZYKeyboardUtil *keyboardUtil) {
+    [keyboardUtil adaptiveViewHandleWithAdaptiveView:weakSelf.inputViewOne, weakSelf.inputViewSecond, weakSelf.inputViewThird, weakSelf.inputViewFourth, nil];
+}];
+```  
+
 <br>
 **Attach：**  
 另外提供自定义处理键盘升/降遮挡输入控件处理(自定义处理方案优先级高于自动处理方案)：
