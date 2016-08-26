@@ -49,7 +49,7 @@ UITextField嵌套两层UIView例子演示：
 **一个页面内多个输入控件处理：(可逐个传入，可传入共同superView)**  
 ![](https://raw.githubusercontent.com/liuzhiyi1992/MyStore/master/ZYKeyboardUtil/ZYKeyboardUtil%E5%A4%9A%E4%B8%AA%E8%BE%93%E5%85%A5%E6%8E%A7%E4%BB%B6.gif)
 ![](https://raw.githubusercontent.com/liuzhiyi1992/MyStore/master/ZYKeyboardUtil/%E8%AE%A2%E5%8D%95%E7%A1%AE%E8%AE%A4%E6%BC%94%E7%A4%BA.gif)
-![](https://raw.githubusercontent.com/liuzhiyi1992/MyStore/master/ZYKeyboardUtil/%E8%AE%A2%E5%8D%95%E7%A1%AE%E8%AE%A4.gif)
+![](https://raw.githubusercontent.com/liuzhiyi1992/MyStore/master/ZYKeyboardUtil/%E5%8D%96%E5%93%81%E5%88%97%E8%A1%A8%E6%BC%94%E7%A4%BA.gif)
 <br>
 <br>
 
