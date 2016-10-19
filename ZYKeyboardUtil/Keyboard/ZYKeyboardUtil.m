@@ -27,6 +27,7 @@ static UIView *FIRST_RESPONDER;
 @property (assign, nonatomic) BOOL haveRegisterObserver;
 @property (weak, nonatomic) UIViewController *adaptiveController;
 @property (weak, nonatomic) UIView *adaptiveView;
+@property (strong, nonatomic) NSValue *prepareRectValue;
 @property (copy, nonatomic) animateWhenKeyboardAppearBlock animateWhenKeyboardAppearBlock;
 @property (copy, nonatomic) animateWhenKeyboardAppearAutomaticAnimBlock animateWhenKeyboardAppearAutomaticAnimBlock;
 @property (copy, nonatomic) animateWhenKeyboardDisappearBlock animateWhenKeyboardDisappearBlock;
@@ -126,6 +127,8 @@ static UIView *FIRST_RESPONDER;
     UIWindow *window = [[UIApplication sharedApplication] keyWindow];
     CGRect convertRect = [adaptiveView.superview convertRect:adaptiveView.frame toView:window];
     if (CGRectGetMinY(keyboardRect) - MARGIN_KEYBOARD_DEFAULT < CGRectGetMaxY(convertRect)) {
+        //记住originFrame
+        self.prepareRectValue = [NSValue valueWithCGRect:controllerView.frame];
         CGFloat signedDiff = CGRectGetMinY(keyboardRect) - CGRectGetMaxY(convertRect) - MARGIN_KEYBOARD_DEFAULT;
         //updateOriginY
         CGFloat newOriginY = CGRectGetMinY(controllerView.frame) + signedDiff;
@@ -135,13 +138,9 @@ static UIView *FIRST_RESPONDER;
 
 - (void)restoreKeyboardAutomatically {
     [self textViewHandle];
-    CGRect tempFrame = self.adaptiveController.view.frame;
-    if (self.adaptiveController.navigationController == nil || self.adaptiveController.navigationController.navigationBar.hidden == YES) {
-        tempFrame.origin.y = 0.f;
-        self.adaptiveController.view.frame = tempFrame;
-    } else {
-        tempFrame.origin.y = 64.f;
-        self.adaptiveController.view.frame = tempFrame;
+    if (_prepareRectValue) {
+        self.adaptiveController.view.frame = [_prepareRectValue CGRectValue];
+        _prepareRectValue = nil;
     }
 }
 
@@ -233,6 +232,13 @@ static UIView *FIRST_RESPONDER;
     [self registerObserver];
 }
 
+- (void)setPrepareRectValue:(NSValue *)prepareRectValue {
+    //为nil时才设置
+    if (!_prepareRectValue) {
+        _prepareRectValue = prepareRectValue;
+    }
+}
+
 #pragma mark 响应selector
 - (void)keyboardWillShow:(NSNotification *)notification {
     [self handleKeyboard:notification keyboardAction:KeyboardActionShow];
@@ -272,17 +278,14 @@ static UIView *FIRST_RESPONDER;
     }
     
     CGFloat heightIncrement = frameEnd.size.height - previousHeight;
-    
     BOOL isSameAction;
     if(self.keyboardInfo.action == keyboardAction) {
         isSameAction = YES;
     }else {
         isSameAction = NO;
     }
-    
     KeyboardInfo *info = [[KeyboardInfo alloc] init];
     [info fillKeyboardInfoWithDuration:DURATION_ANIMATION frameBegin:frameBegin frameEnd:frameEnd heightIncrement:heightIncrement action:keyboardAction isSameAction:isSameAction];
-    
     self.keyboardInfo = info;
 }
 
@@ -295,6 +298,7 @@ static UIView *FIRST_RESPONDER;
     keyboardInfo.isSameAction = isSameAction;
 }
 @end
+
 
 
 
