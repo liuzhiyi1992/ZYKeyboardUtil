@@ -9,7 +9,7 @@ Util Handed all keyboard events with Block Conveniently
 </h5>
 </h1>
 <p align="center">
-<img src="https://img.shields.io/badge/pod-v1.0.3-blue.svg" />
+<img src="https://img.shields.io/badge/pod-v1.0.4-blue.svg" />
 <img src="https://img.shields.io/badge/supporting-objectiveC-yellow.svg" />
 <img src="https://img.shields.io/badge/Advantage-Automation-red.svg" />
 <img src="https://img.shields.io/badge/Demo-contain-9600cd.svg" />
@@ -18,6 +18,7 @@ Util Handed all keyboard events with Block Conveniently
 </p>
 <br>
 <br>
+- 1.0.4增加API```- (void)adaptiveViewHandleWithAdaptiveView:(UIView *)adaptiveView, ...```, 可不传入适配页面所属的controller  
 - 1.0.3稳定版本，取消1.0.2新增特性(出现代理无法使用问题，暂停使用)    
 - 1.0.2处理 同一页面多个输入控件时不收键盘而直接转移第一响应者到另一被半遮盖输入控件 界面没有适配动作问题（在当前输入控件注
 销第一响应者时，会重复再触发一次与上次相同的遮盖计算）
@@ -45,8 +46,10 @@ UITextField嵌套两层UIView例子演示：
 
 <br>
 
-**一个页面内多个输入控件处理：**  
+**一个页面内多个输入控件处理：(可逐个传入，可传入共同superView)**  
 ![](https://raw.githubusercontent.com/liuzhiyi1992/MyStore/master/ZYKeyboardUtil/ZYKeyboardUtil%E5%A4%9A%E4%B8%AA%E8%BE%93%E5%85%A5%E6%8E%A7%E4%BB%B6.gif)
+![](https://raw.githubusercontent.com/liuzhiyi1992/MyStore/master/ZYKeyboardUtil/%E8%AE%A2%E5%8D%95%E7%A1%AE%E8%AE%A4%E6%BC%94%E7%A4%BA.gif)
+![](https://raw.githubusercontent.com/liuzhiyi1992/MyStore/master/ZYKeyboardUtil/%E5%8D%96%E5%93%81%E5%88%97%E8%A1%A8%E6%BC%94%E7%A4%BA.gif)
 <br>
 <br>
 
@@ -56,7 +59,7 @@ UITextField嵌套两层UIView例子演示：
 <br>
 
 #**CocoaPods：**  
-```pod 'ZYKeyboardUtil', '~> 1.0.3'```  
+```pod 'ZYKeyboardUtil', '~> 1.0.4'```  
 
 <br>
 
@@ -73,6 +76,14 @@ __weak ViewController *weakSelf = self;
     [keyboardUtil adaptiveViewHandleWithController:weakSelf adaptiveView:weakSelf.inputViewOne, weakSelf.inputViewSecond, weakSelf.inputViewThird, weakSelf.inputViewFourth, nil];
 }];
 ```  
+or you can write like this convenient: (KeyboardUtil can find the controller itself)
+```objc
+__weak ViewController *weakSelf = self;
+[_keyboardUtil setAnimateWhenKeyboardAppearAutomaticAnimBlock:^(ZYKeyboardUtil *keyboardUtil) {
+    [keyboardUtil adaptiveViewHandleWithAdaptiveView:weakSelf.inputViewOne, weakSelf.inputViewSecond, weakSelf.inputViewThird, weakSelf.inputViewFourth, nil];
+}];
+```  
+
 <br>
 **Attach：**  
 另外提供自定义处理键盘升/降遮挡输入控件处理(自定义处理方案优先级高于自动处理方案)：
