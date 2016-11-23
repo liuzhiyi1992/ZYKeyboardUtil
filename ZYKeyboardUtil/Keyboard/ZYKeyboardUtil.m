@@ -9,7 +9,6 @@
 #import "ZYKeyboardUtil.h"
 
 #define MARGIN_KEYBOARD_DEFAULT 10
-
 #define TEXTVIEW_NO_ANIM_BEGIN if ([_adaptiveView isKindOfClass:[UITextView class]]) {\
                                 [CATransaction begin];\
                                 [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];\
@@ -17,8 +16,6 @@
 #define TEXTVIEW_NO_ANIM_END if ([_adaptiveView isKindOfClass:[UITextView class]]) {\
                                 [CATransaction commit];\
                                 }
-
-static UIView *FIRST_RESPONDER;
 
 @interface ZYKeyboardUtil()
 @property (assign, nonatomic) BOOL keyboardObserveEnabled;
@@ -66,11 +63,11 @@ static UIView *FIRST_RESPONDER;
     
     self.adaptiveController = viewController;
     for (UIView *adaptiveViews in adaptiveViewList) {
-        FIRST_RESPONDER = nil;
-        UIView *firstResponderView = [self recursionTraverseFindFirstResponderIn:adaptiveViews];
-        if (nil != firstResponderView) {
-            self.adaptiveView = firstResponderView;
-            [self fitKeyboardAutomatically:firstResponderView controllerView:viewController.view keyboardRect:_keyboardInfo.frameEnd];
+        UIView *firstResponder = nil;
+        [self recursionTraverseFindFirstResponderIn:adaptiveViews responder:&firstResponder];
+        if (nil != firstResponder) {
+            self.adaptiveView = firstResponder;
+            [self fitKeyboardAutomatically:firstResponder controllerView:viewController.view keyboardRect:_keyboardInfo.frameEnd];
             break;
         }
     }
@@ -96,31 +93,30 @@ static UIView *FIRST_RESPONDER;
         NSLog(@"\nERROR: Can not find adaptiveView`s Controller");
         return;
     }
-    
     for (UIView *adaptiveViews in adaptiveViewList) {
-        FIRST_RESPONDER = nil;
-        UIView *firstResponderView = [self recursionTraverseFindFirstResponderIn:adaptiveViews];
-        if (nil != firstResponderView) {
-            self.adaptiveView = firstResponderView;
-            [self fitKeyboardAutomatically:firstResponderView controllerView:adaptiveController.view keyboardRect:_keyboardInfo.frameEnd];
+        UIView *firstResponder = nil;
+        [self recursionTraverseFindFirstResponderIn:adaptiveViews responder:&firstResponder];
+        if (nil != firstResponder) {
+            self.adaptiveView = firstResponder;
+            [self fitKeyboardAutomatically:firstResponder controllerView:adaptiveController.view keyboardRect:_keyboardInfo.frameEnd];
             break;
         }
     }
 }
 
-- (UIView *)recursionTraverseFindFirstResponderIn:(UIView *)view {
+- (void)recursionTraverseFindFirstResponderIn:(UIView *)view responder:(UIView **)responder {
     if ([view isFirstResponder]) {
-        FIRST_RESPONDER = view;
+        *responder = view;
     } else {
         for (UIView *subView in view.subviews) {
             if ([subView isFirstResponder]) {
-                FIRST_RESPONDER = subView;
-                return FIRST_RESPONDER;
+                *responder = subView;
+                return;
             }
-            [self recursionTraverseFindFirstResponderIn:subView];
+            [self recursionTraverseFindFirstResponderIn:subView responder:responder];
         }
     }
-    return FIRST_RESPONDER;
+    return;
 }
 
 - (void)fitKeyboardAutomatically:(UIView *)adaptiveView controllerView:(UIView *)controllerView keyboardRect:(CGRect)keyboardRect {
