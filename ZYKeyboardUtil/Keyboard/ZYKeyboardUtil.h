@@ -45,6 +45,10 @@ typedef void (^animateWhenKeyboardDisappearBlock)(CGFloat keyboardHeight);
 typedef void (^printKeyboardInfoBlock)(ZYKeyboardUtil *keyboardUtil, KeyboardInfo *keyboardInfo);
 typedef void (^animateWhenKeyboardAppearAutomaticAnimBlock)(ZYKeyboardUtil *keyboardUtil);
 
+@property (assign, nonatomic) CGFloat keyboardTopMargin;
+
+- (instancetype)initWithKeyboardTopMargin:(CGFloat)keyboardTopMargin;
+
 - (void)setAnimateWhenKeyboardAppearBlock:(animateWhenKeyboardAppearBlock)animateWhenKeyboardAppearBlock;
 - (void)setAnimateWhenKeyboardAppearAutomaticAnimBlock:(animateWhenKeyboardAppearAutomaticAnimBlock)animateWhenKeyboardAppearAutomaticAnimBlock;
 - (void)setAnimateWhenKeyboardDisappearBlock:(animateWhenKeyboardDisappearBlock)animateWhenKeyboardDisappearBlock;

@@ -29,7 +29,7 @@
 }
 
 - (void)configKeyBoardRespond {
-     self.keyboardUtil = [[ZYKeyboardUtil alloc] init];
+     self.keyboardUtil = [[ZYKeyboardUtil alloc] initWithKeyboardTopMargin:10];
     __weak ViewController *weakSelf = self;
     #pragma explain - 全自动键盘弹出/收起处理 (需调用keyboardUtil 的 adaptiveViewHandleWithController:adaptiveView:)
     #pragma explain - use animateWhenKeyboardAppearBlock, animateWhenKeyboardAppearAutomaticAnimBlock will be invalid.

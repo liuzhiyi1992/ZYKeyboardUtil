@@ -8,7 +8,6 @@
 
 #import "ZYKeyboardUtil.h"
 
-#define MARGIN_KEYBOARD_DEFAULT 10
 #define TEXTVIEW_NO_ANIM_BEGIN if ([_adaptiveView isKindOfClass:[UITextView class]]) {\
                                 [CATransaction begin];\
                                 [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];\
@@ -33,13 +32,22 @@
 
 
 @implementation ZYKeyboardUtil
+- (instancetype)initWithKeyboardTopMargin:(CGFloat)keyboardTopMargin {
+    self = [super init];
+    if (self)
+    {
+        _keyboardTopMargin = keyboardTopMargin;
+    }
+    return self;
+}
+
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark - lazy注册观察者
 - (void)registerObserver {
-    if (_haveRegisterObserver == YES) {
+    if (YES == _haveRegisterObserver) {
         return;
     }
     self.haveRegisterObserver = YES;
@@ -122,10 +130,10 @@
 - (void)fitKeyboardAutomatically:(UIView *)adaptiveView controllerView:(UIView *)controllerView keyboardRect:(CGRect)keyboardRect {
     UIWindow *window = [[UIApplication sharedApplication] keyWindow];
     CGRect convertRect = [adaptiveView.superview convertRect:adaptiveView.frame toView:window];
-    if (CGRectGetMinY(keyboardRect) - MARGIN_KEYBOARD_DEFAULT < CGRectGetMaxY(convertRect)) {
+    if (CGRectGetMinY(keyboardRect) - _keyboardTopMargin < CGRectGetMaxY(convertRect)) {
         //记住originFrame
         self.prepareRectValue = [NSValue valueWithCGRect:controllerView.frame];
-        CGFloat signedDiff = CGRectGetMinY(keyboardRect) - CGRectGetMaxY(convertRect) - MARGIN_KEYBOARD_DEFAULT;
+        CGFloat signedDiff = CGRectGetMinY(keyboardRect) - CGRectGetMaxY(convertRect) - _keyboardTopMargin;
         //updateOriginY
         CGFloat newOriginY = CGRectGetMinY(controllerView.frame) + signedDiff;
         controllerView.frame = CGRectMake(controllerView.frame.origin.x, newOriginY, controllerView.frame.size.width, controllerView.frame.size.height);
