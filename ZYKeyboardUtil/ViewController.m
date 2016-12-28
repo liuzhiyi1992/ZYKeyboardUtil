@@ -9,7 +9,7 @@
 #import "ViewController.h"
 #import "ZYKeyboardUtil.h"
 
-#define MARGIN_KEYBOARD 20
+#define MARGIN_KEYBOARD 10
 
 @interface ViewController ()
 @property (strong, nonatomic) ZYKeyboardUtil *keyboardUtil;
@@ -28,8 +28,14 @@
     [self configKeyBoardRespond];
 }
 
+- (void)dealloc {
+    self.mainTextField.delegate = nil;
+    self.secondTextField.delegate = nil;
+    self.thirdTextField.delegate = nil;
+}
+
 - (void)configKeyBoardRespond {
-     self.keyboardUtil = [[ZYKeyboardUtil alloc] initWithKeyboardTopMargin:10];
+     self.keyboardUtil = [[ZYKeyboardUtil alloc] initWithKeyboardTopMargin:MARGIN_KEYBOARD];
     __weak ViewController *weakSelf = self;
     #pragma explain - 全自动键盘弹出/收起处理 (需调用keyboardUtil 的 adaptiveViewHandleWithController:adaptiveView:)
     #pragma explain - use animateWhenKeyboardAppearBlock, animateWhenKeyboardAppearAutomaticAnimBlock will be invalid.
