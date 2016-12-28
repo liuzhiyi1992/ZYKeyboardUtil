@@ -9,7 +9,6 @@
 #import "ZYKeyboardUtil.h"
 
 #define MARGIN_KEYBOARD_DEFAULT 10
-
 #define TEXTVIEW_NO_ANIM_BEGIN if ([_adaptiveView isKindOfClass:[UITextView class]]) {\
                                 [CATransaction begin];\
                                 [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];\
@@ -94,7 +93,6 @@
         NSLog(@"\nERROR: Can not find adaptiveView`s Controller");
         return;
     }
-    
     for (UIView *adaptiveViews in adaptiveViewList) {
         UIView *firstResponder = nil;
         [self recursionTraverseFindFirstResponderIn:adaptiveViews responder:&firstResponder];

@@ -42,7 +42,6 @@
     }];
      */
     
-    
     #pragma explain - 自定义键盘弹出处理(如配置，全自动键盘处理则失效)
     #pragma explain - use animateWhenKeyboardAppearAutomaticAnimBlock, animateWhenKeyboardAppearBlock must be nil.
     /*
