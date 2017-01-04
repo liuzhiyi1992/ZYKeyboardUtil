@@ -9,7 +9,7 @@ Util Handled all keyboard events with Block Conveniently
 </h5>
 </h1>
 <p align="center">
-<img src="https://img.shields.io/badge/pod-v1.0.6-blue.svg" />
+<img src="https://img.shields.io/badge/pod-v1.0.7-blue.svg" />
 <img src="https://img.shields.io/badge/supporting-objectiveC-yellow.svg" />
 <img src="https://img.shields.io/badge/Advantage-Automation-red.svg" />
 <img src="https://img.shields.io/badge/Demo-contain-9600cd.svg" />
@@ -18,6 +18,7 @@ Util Handled all keyboard events with Block Conveniently
 </p>
 <br>
 <br>
+- 1.0.7开放keyboardTopMargin属性，定制键盘与控件间隙。优化寻找firstResponder遍历逻辑，去除static引用不释放隐患。  
 - 1.0.6更新寻找firstResponder递归算法，解决潜在memory leak  
 - 1.0.5优化键盘收起时界面恢复的逻辑  
 - 1.0.4增加API```- (void)adaptiveViewHandleWithAdaptiveView:(UIView *)adaptiveView, ...```, 可不传入适配页面所属的controller  
@@ -61,7 +62,7 @@ UITextField嵌套两层UIView例子演示：
 <br>
 
 #**CocoaPods：**  
-```pod 'ZYKeyboardUtil', '~> 1.0.6'```  
+```pod 'ZYKeyboardUtil', '~> 1.0.7'```  
 
 <br>
 
